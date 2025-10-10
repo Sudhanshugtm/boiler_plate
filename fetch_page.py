@@ -42,25 +42,25 @@ def process_html(html_content, lang='en'):
     for script in soup.find_all('script'):
         script.decompose()
 
-    # Update CSS links to point to local files
+    # Update CSS links to point to local files (with ../ for pages/ subdirectory)
     css_links = soup.find_all('link', rel='stylesheet')
     for link in css_links:
         href = link.get('href', '')
         if 'load.php' in href and 'only=styles' in href:
             if 'site.styles' in href:
-                link['href'] = 'assets/css/wikipedia-site.css'
+                link['href'] = '../assets/css/wikipedia-site.css'
             else:
-                link['href'] = 'assets/css/wikipedia-modules.css'
+                link['href'] = '../assets/css/wikipedia-modules.css'
 
-    # Add our custom JavaScript files at the end of body
+    # Add our custom JavaScript files at the end of body (with ../ for pages/ subdirectory)
     body = soup.find('body')
     if body:
         js_files = [
-            'assets/js/dropdowns.js',
-            'assets/js/tabs.js',
-            'assets/js/search.js',
-            'assets/js/variants.js',
-            'assets/js/main.js'
+            '../assets/js/dropdowns.js',
+            '../assets/js/tabs.js',
+            '../assets/js/search.js',
+            '../assets/js/variants.js',
+            '../assets/js/main.js'
         ]
 
         for js_file in js_files:
