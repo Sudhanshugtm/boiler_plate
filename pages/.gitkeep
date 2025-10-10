@@ -1,0 +1,2 @@
+# This directory stores fetched Wikipedia pages
+# Use fetch_page.py to populate this directory with Wikipedia pages for prototyping
