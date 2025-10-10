@@ -72,7 +72,7 @@
     menu.appendChild(title);
 
     // Add variant options
-    const variants = ['Default', '1', '2', '3', '4', '5'];
+    const variants = ['Default', '1', '2', '3', '4', '5', '6'];
     variants.forEach(v => {
       const button = document.createElement('button');
       button.style.cssText = `
@@ -173,6 +173,21 @@
         addExplanatoryText();
         break;
 
+      case '4':
+        // Variant 4: Bigger cards with visual emphasis
+        makeBiggerContributionCards();
+        break;
+
+      case '5':
+        // Variant 5: Hindi-first design
+        emphasizeHindiContent();
+        break;
+
+      case '6':
+        // Variant 6: Add visual icons to cards
+        addVisualIcons();
+        break;
+
       // Add more variants as needed
     }
   }
@@ -237,6 +252,147 @@
       `;
       tabs.parentNode.insertBefore(help, tabs.nextSibling);
     }
+  }
+
+  // Variant 4: Make contribution cards bigger and more visual
+  function makeBiggerContributionCards() {
+    const cards = document.querySelectorAll('.mw-contribute-card');
+    cards.forEach(card => {
+      card.style.cssText = `
+        min-height: 200px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        border-radius: 12px;
+        transition: transform 0.2s;
+        border: 2px solid #eaecf0;
+      `;
+
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = 'scale(1.05)';
+        card.style.boxShadow = '0 8px 24px rgba(0,0,0,0.15)';
+        card.style.borderColor = '#3366cc';
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'scale(1)';
+        card.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+        card.style.borderColor = '#eaecf0';
+      });
+    });
+
+    const titles = document.querySelectorAll('.mw-contribute-card-title');
+    titles.forEach(title => {
+      title.style.fontSize = '24px';
+      title.style.fontWeight = 'bold';
+      title.style.marginBottom = '15px';
+    });
+
+    const descriptions = document.querySelectorAll('.mw-contribute-card-description');
+    descriptions.forEach(desc => {
+      desc.style.fontSize = '16px';
+      desc.style.lineHeight = '1.6';
+      desc.style.marginBottom = '20px';
+    });
+
+    const actions = document.querySelectorAll('.mw-contribute-card-action');
+    actions.forEach(action => {
+      action.style.fontSize = '16px';
+      action.style.fontWeight = '600';
+      action.style.color = '#3366cc';
+    });
+  }
+
+  // Variant 5: Emphasize Hindi content over English
+  function emphasizeHindiContent() {
+    // Change "Translations" to Hindi
+    const cards = document.querySelectorAll('.mw-contribute-card-title');
+    cards.forEach(card => {
+      if (card.textContent.trim() === 'Translations') {
+        card.textContent = '🌐 अनुवाद';
+      }
+    });
+
+    // Add Hindi emphasis banner
+    const content = document.querySelector('#mw-content-text');
+    if (content) {
+      const banner = document.createElement('div');
+      banner.style.cssText = `
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+      `;
+      banner.innerHTML = `
+        🇮🇳 हिन्दी विकिपीडिया में योगदान करें
+      `;
+      content.prepend(banner);
+    }
+
+    // Style Hindi text elements
+    const hindiElements = document.querySelectorAll('[lang="hi"]');
+    hindiElements.forEach(elem => {
+      elem.style.fontWeight = '600';
+    });
+  }
+
+  // Variant 6: Add visual icons to contribution cards
+  function addVisualIcons() {
+    const cards = document.querySelectorAll('.mw-contribute-card');
+    cards.forEach((card, index) => {
+      const content = card.querySelector('.mw-contribute-card-content');
+      if (content) {
+        const icon = document.createElement('div');
+        icon.style.cssText = `
+          width: 80px;
+          height: 80px;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 40px;
+          margin-bottom: 20px;
+          box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        `;
+        icon.textContent = index === 0 ? '🌐' : '📝';
+        content.prepend(icon);
+      }
+    });
+
+    // Make cards more visual
+    const wrapper = document.querySelector('.mw-contribute-content-area');
+    if (wrapper) {
+      wrapper.style.cssText = `
+        display: grid;
+        gap: 30px;
+        padding: 20px;
+      `;
+    }
+
+    cards.forEach(card => {
+      card.style.cssText = `
+        background: white;
+        border-radius: 16px;
+        padding: 30px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+      `;
+
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-8px)';
+        card.style.boxShadow = '0 12px 24px rgba(0,0,0,0.15)';
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0)';
+        card.style.boxShadow = '0 4px 12px rgba(0,0,0,0.08)';
+      });
+    });
   }
 
   // Enable debug mode
