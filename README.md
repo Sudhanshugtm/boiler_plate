@@ -21,6 +21,8 @@ open pages/contribute.html?variant=1
 
 **See [WORKFLOW.md](WORKFLOW.md) for complete guide.**
 
+**See [DEPLOYMENT.md](DEPLOYMENT.md) for GitHub Pages deployment instructions.**
+
 ---
 
 ## 🎯 What This Does
@@ -226,20 +228,31 @@ body.variant-5 .contribution-tabs {
 
 ## 📤 Deployment
 
-### GitHub Pages (Recommended)
+### GitHub Pages (Automated)
+
+This repository includes a GitHub Actions workflow that automatically deploys to GitHub Pages when you push to the main branch.
+
+**One-time setup:**
+
+1. Go to your repository Settings → Pages
+2. Under "Build and deployment", set Source to **GitHub Actions**
+3. That's it! The workflow will deploy automatically on every push to main
+
+**Deploy your changes:**
 
 ```bash
-# 1. Push to GitHub
+# Commit and push your changes
 git add .
 git commit -m "Add UX prototypes"
 git push origin main
 
-# 2. Enable GitHub Pages in repo settings
-# Settings → Pages → Source: main branch
-
-# 3. Access at:
-# https://username.github.io/boiler_plate/
+# GitHub Actions will automatically deploy
+# Access your site at: https://username.github.io/boiler_plate/
 ```
+
+**Manual deployment option:**
+
+You can also trigger deployment manually from the Actions tab → "Deploy to GitHub Pages" → "Run workflow"
 
 ### Multiple Branches
 
