@@ -136,6 +136,13 @@ def process_html_fidelity(html_content, asset_prefix, base):
                 else:
                     tag[attr] = absolutize_url(tag[attr], base)
 
+    # Make base available to runtime bridge
+    head = soup.find('head')
+    if head:
+        base_script = soup.new_tag('script')
+        base_script.string = f"window.__VE_REMOTE_BASE__ = '{base}';"
+        head.append(base_script)
+
     body = soup.find('body')
     if body:
         injected_paths = {
@@ -162,6 +169,13 @@ def process_html_fidelity(html_content, asset_prefix, base):
         if editor_css not in existing_hrefs:
             link_tag = soup.new_tag('link', rel='stylesheet', href=editor_css)
             head.append(link_tag)
+
+        # Always inject VE network bridge in fidelity mode
+        bridge_src = f'{asset_prefix}/js/ve-bridge.js'
+        existing_srcs = {s.get('src') for s in head.find_all('script') if s.get('src')}
+        if bridge_src not in existing_srcs:
+            s = soup.new_tag('script', src=bridge_src)
+            head.append(s)
 
     return str(soup)
 
