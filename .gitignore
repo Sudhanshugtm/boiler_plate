@@ -5,3 +5,4 @@ process_html.py
 __pycache__/
 .vscode/
 .idea/
+node_modules/

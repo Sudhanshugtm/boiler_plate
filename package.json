@@ -1,0 +1,14 @@
+{
+  "name": "boiler_plate-receiver",
+  "private": true,
+  "version": "0.0.1",
+  "description": "UXA receiver (WS + HTTP) for annotator integration",
+  "main": "receiver.js",
+  "scripts": {
+    "start": "node receiver.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "ws": "^8.17.0"
+  }
+}

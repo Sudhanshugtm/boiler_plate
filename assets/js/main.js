@@ -203,6 +203,8 @@
 
   // Initialize all modules
   function init() {
+    maybeBootstrapEditor();
+    interceptEditBootstrap();
     initStickyHeader();
     initAppearanceToggle();
     initReferences();
@@ -215,6 +217,48 @@
 
     // Log successful initialization
     console.log('✓ Wikipedia mockup initialized successfully');
+  }
+
+  // Load VisualEditor prototype script on demand to support older pages
+  function maybeBootstrapEditor() {
+    try {
+      const qs = new URLSearchParams(location.search);
+      const should = qs.get('editor') && qs.get('editor') !== '0' && qs.get('editor') !== 'false';
+      const already = Array.from(document.scripts).some(s=> (s.src||'').includes('/assets/js/editor.js'));
+      if (!should || already) return;
+      const s = document.createElement('script');
+      s.defer = true;
+      s.src = location.pathname.includes('/pages/') ? '../assets/js/editor.js' : 'assets/js/editor.js';
+      document.body.appendChild(s);
+    } catch(_) {}
+  }
+
+  // If user clicks an Edit link on older pages (without editor.js), load it and open directly
+  function interceptEditBootstrap() {
+    try {
+      const already = Array.from(document.scripts).some(s=> (s.src||'').includes('/assets/js/editor.js'));
+      if (already) return; // editor.js will handle its own edit-link interception
+      const selectors = [
+        '#ca-edit a',
+        '.vector-menu-tabs a[accesskey="e"]',
+        'a[href*="action=edit"]',
+        'a[href*="veaction=edit"]',
+        '.mw-editsection a'
+      ];
+      document.addEventListener('click', function (e) {
+        const a = e.target && (e.target.closest ? e.target.closest('a') : null);
+        if (!a) return;
+        if (!selectors.some(sel => a.matches(sel))) return;
+        const alreadyNow = Array.from(document.scripts).some(s=> (s.src||'').includes('/assets/js/editor.js'));
+        if (alreadyNow) return; // editor.js will take over
+        e.preventDefault();
+        window.__VE_OPEN_ON_LOAD__ = true;
+        const s = document.createElement('script');
+        s.defer = true;
+        s.src = location.pathname.includes('/pages/') ? '../assets/js/editor.js' : 'assets/js/editor.js';
+        document.body.appendChild(s);
+      }, true);
+    } catch(_) {}
   }
 
   // Run initialization

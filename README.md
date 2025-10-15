@@ -50,6 +50,14 @@ python3 fetch_page.py --url "https://en.wikipedia.org/wiki/Special:RecentChanges
 
 All pages work immediately with full styling and functionality.
 
+### 1.5 Visual Editor Prototype (New)
+
+- Open a VE-style editor on any fetched page:
+  - Click any Edit link, or
+  - Append `?editor=1` to the page URL
+- Includes toolbar (bold/italic/headings/link/cite/media), contenteditable surface, source mode toggle, autosave drafts, and mock “Publish” with a word-level diff preview.
+- Files: `assets/js/editor.js`, `assets/css/editor.css` (auto-injected by fetcher).
+
 ### 2. Design Variant System
 
 Test multiple UX approaches on the same page:

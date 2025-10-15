@@ -94,6 +94,15 @@ def process_html_prototype(html_content, asset_prefix):
             else:
                 link['href'] = f'{asset_prefix}/css/wikipedia-modules.css'
 
+    # Ensure our editor stylesheet is present
+    head = soup.find('head')
+    if head:
+        existing_hrefs = {l.get('href') for l in head.find_all('link', rel='stylesheet') if l.get('href')}
+        editor_css = f'{asset_prefix}/css/editor.css'
+        if editor_css not in existing_hrefs:
+            link_tag = soup.new_tag('link', rel='stylesheet', href=editor_css)
+            head.append(link_tag)
+
     # Add our custom JavaScript files at the end of body (with ../ for pages/ subdirectory)
     body = soup.find('body')
     if body:
@@ -102,7 +111,8 @@ def process_html_prototype(html_content, asset_prefix):
             f'{asset_prefix}/js/tabs.js',
             f'{asset_prefix}/js/search.js',
             f'{asset_prefix}/js/variants.js',
-            f'{asset_prefix}/js/main.js'
+            f'{asset_prefix}/js/main.js',
+            f'{asset_prefix}/js/editor.js'
         ]
 
         for js_file in js_files:
@@ -133,7 +143,8 @@ def process_html_fidelity(html_content, asset_prefix, base):
             f'{asset_prefix}/js/tabs.js',
             f'{asset_prefix}/js/search.js',
             f'{asset_prefix}/js/variants.js',
-            f'{asset_prefix}/js/main.js'
+            f'{asset_prefix}/js/main.js',
+            f'{asset_prefix}/js/editor.js'
         }
         existing_paths = {
             tag.get('src') for tag in body.find_all('script') if tag.get('src')
@@ -142,6 +153,15 @@ def process_html_fidelity(html_content, asset_prefix, base):
             script_tag = soup.new_tag('script', src=script_path)
             script_tag['defer'] = True
             body.append(script_tag)
+
+    # Ensure our editor stylesheet is present
+    head = soup.find('head')
+    if head:
+        existing_hrefs = {l.get('href') for l in head.find_all('link', rel='stylesheet') if l.get('href')}
+        editor_css = f'{asset_prefix}/css/editor.css'
+        if editor_css not in existing_hrefs:
+            link_tag = soup.new_tag('link', rel='stylesheet', href=editor_css)
+            head.append(link_tag)
 
     return str(soup)
 

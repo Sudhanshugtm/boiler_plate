@@ -1,0 +1,132 @@
+/* Visual Editor Prototype Styles */
+
+:root {
+  --ve-bg: #fff;
+  --ve-surface-bg: #fff;
+  --ve-border: #c8ccd1;
+  --ve-border-dark: #a2a9b1;
+  --ve-muted: #72777d;
+  --ve-primary: #36c;
+  --ve-primary-hover: #2a4b8d;
+  --ve-danger: #d73333;
+  --ve-success: #14866d;
+}
+
+#ve-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--ve-bg);
+  z-index: 100000; /* above everything */
+  display: none;
+  flex-direction: column;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, Helvetica, sans-serif;
+  color: #202122;
+}
+
+#ve-overlay.ve-open { display: flex; }
+
+.ve-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--ve-border);
+  background: #f8f9fa;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.ve-title {
+  font-weight: 600;
+  margin-right: auto;
+}
+
+.ve-sep {
+  width: 1px;
+  height: 24px;
+  background: var(--ve-border);
+  margin: 0 4px;
+}
+
+.ve-btn {
+  border: 1px solid var(--ve-border);
+  background: #fff;
+  color: #202122;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.ve-btn:hover { border-color: var(--ve-border-dark); background: #fff; }
+.ve-btn[aria-pressed="true"] { box-shadow: inset 0 0 0 2px var(--ve-primary); }
+
+.ve-btn.ve-primary { background: var(--ve-primary); color: #fff; border-color: var(--ve-primary); }
+.ve-btn.ve-primary:hover { background: var(--ve-primary-hover); border-color: var(--ve-primary-hover); }
+.ve-btn.ve-danger { background: #fff; color: var(--ve-danger); border-color: var(--ve-danger); }
+
+.ve-select {
+  border: 1px solid var(--ve-border);
+  background: #fff;
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-size: 14px;
+}
+
+.ve-surface-wrap {
+  display: flex;
+  flex: 1;
+  min-height: 0; /* allow scroll */
+}
+
+.ve-surface {
+  flex: 1;
+  padding: 24px;
+  overflow: auto;
+  background: var(--ve-surface-bg);
+}
+
+.ve-surface [contenteditable="true"] {
+  outline: none;
+}
+
+.ve-statusbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 12px;
+  border-top: 1px solid var(--ve-border);
+  font-size: 12px;
+  color: var(--ve-muted);
+}
+
+/* Inspector / modal */
+.ve-modal-backdrop {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.35);
+  display: none; align-items: center; justify-content: center; z-index: 100001;
+}
+.ve-modal-backdrop.ve-open { display: flex; }
+.ve-modal {
+  background: #fff; border: 1px solid var(--ve-border); border-radius: 8px; min-width: 360px;
+  max-width: 720px; box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+}
+.ve-modal .ve-modal-header { padding: 12px 16px; font-weight: 600; border-bottom: 1px solid var(--ve-border); }
+.ve-modal .ve-modal-body { padding: 12px 16px; }
+.ve-modal .ve-modal-footer { padding: 12px 16px; display: flex; gap: 8px; justify-content: flex-end; border-top: 1px solid var(--ve-border); }
+
+.ve-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.ve-field label { font-size: 12px; color: var(--ve-muted); }
+.ve-input { border: 1px solid var(--ve-border); border-radius: 4px; padding: 8px; font-size: 14px; }
+
+/* Diff view */
+.ve-diff { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; line-height: 1.6; max-height: 50vh; overflow: auto; padding: 8px; background: #f8f9fa; border: 1px solid var(--ve-border); border-radius: 6px; }
+.ve-diff del { background: #ffecec; text-decoration: none; }
+.ve-diff ins { background: #eaffea; text-decoration: none; }
+
+/* Source mode */
+.ve-source { width: 100%; height: 60vh; border: 1px solid var(--ve-border); border-radius: 6px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13px; padding: 12px; }
+
+/* Floating tooltip for small inspectors if needed */
+.ve-tooltip { position: absolute; background: #fff; border: 1px solid var(--ve-border); border-radius: 6px; padding: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+
