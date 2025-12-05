@@ -192,7 +192,7 @@
     console.log(`[Intent Selector] Selected: ${intentId}`);
   }
 
-  // Create sidebar mode switcher with unique classes to avoid Wikipedia CSS conflicts
+  // Create sidebar mode switcher in the left sidebar (below TOC)
   function createModeSwitcher(currentIntent) {
     console.log('[Intent Selector] Creating mode switcher for:', currentIntent);
 
@@ -200,17 +200,17 @@
     const existing = document.getElementById('learning-mode-switcher');
     if (existing) existing.remove();
 
-    // Try to find the Appearance container
-    let appearanceContainer = document.getElementById('vector-appearance-pinned-container');
-    console.log('[Intent Selector] Found pinned container:', !!appearanceContainer);
-
-    if (!appearanceContainer || !appearanceContainer.querySelector('.vector-appearance')) {
-      appearanceContainer = document.getElementById('vector-appearance-unpinned-container');
-      console.log('[Intent Selector] Trying unpinned container:', !!appearanceContainer);
+    // Find the left sidebar (TOC container or page tools)
+    let sidebar = document.querySelector('.vector-column-start');
+    if (!sidebar) {
+      sidebar = document.querySelector('#mw-panel');
+    }
+    if (!sidebar) {
+      sidebar = document.querySelector('.mw-body');
     }
 
-    if (!appearanceContainer) {
-      console.warn('[Intent Selector] Appearance container not found - cannot create sidebar switcher');
+    if (!sidebar) {
+      console.warn('[Intent Selector] Sidebar not found - cannot create mode switcher');
       return null;
     }
 
@@ -222,14 +222,14 @@
     // Title
     const title = document.createElement('div');
     title.className = 'learning-mode-title';
-    title.textContent = 'Learning mode';
+    title.textContent = 'View mode';
     wrapper.appendChild(title);
 
-    // Options container with left border
+    // Options container
     const options = document.createElement('div');
     options.className = 'learning-mode-options';
 
-    // Radio buttons with simple structure
+    // Radio buttons
     Object.values(INTENT_MODES).forEach(mode => {
       const label = document.createElement('label');
       label.className = 'learning-mode-option';
@@ -252,22 +252,11 @@
 
     wrapper.appendChild(options);
 
-    // Insert into appearance container
-    const appearanceContent = appearanceContainer.querySelector('.vector-pinnable-element');
-    console.log('[Intent Selector] Found pinnable element:', !!appearanceContent);
-
-    if (appearanceContent) {
-      const headerEl = appearanceContent.querySelector('.vector-pinnable-header');
-      if (headerEl && headerEl.nextSibling) {
-        appearanceContent.insertBefore(wrapper, headerEl.nextSibling);
-        console.log('[Intent Selector] Inserted switcher after header');
-      } else {
-        appearanceContent.appendChild(wrapper);
-        console.log('[Intent Selector] Appended switcher to pinnable element');
-      }
+    // Insert at top of sidebar
+    if (sidebar.firstChild) {
+      sidebar.insertBefore(wrapper, sidebar.firstChild);
     } else {
-      appearanceContainer.appendChild(wrapper);
-      console.log('[Intent Selector] Appended switcher to container');
+      sidebar.appendChild(wrapper);
     }
 
     console.log('[Intent Selector] Mode switcher created successfully');
