@@ -192,7 +192,7 @@
     console.log(`[Intent Selector] Selected: ${intentId}`);
   }
 
-  // Create sidebar mode switcher in the left sidebar (below TOC)
+  // Create sidebar mode switcher in the right sidebar
   function createModeSwitcher(currentIntent) {
     console.log('[Intent Selector] Creating mode switcher for:', currentIntent);
 
@@ -200,13 +200,17 @@
     const existing = document.getElementById('learning-mode-switcher');
     if (existing) existing.remove();
 
-    // Find the left sidebar (TOC container or page tools)
-    let sidebar = document.querySelector('.vector-column-start');
+    // Find the right sidebar (vector-column-end or similar)
+    let sidebar = document.querySelector('.vector-column-end');
     if (!sidebar) {
-      sidebar = document.querySelector('#mw-panel');
+      sidebar = document.querySelector('#vector-page-tools-pinned-container');
     }
     if (!sidebar) {
-      sidebar = document.querySelector('.mw-body');
+      // Fallback: create a fixed position panel on the right
+      sidebar = document.createElement('div');
+      sidebar.id = 'learning-mode-sidebar';
+      sidebar.style.cssText = 'position: fixed; top: 120px; right: 20px; z-index: 100;';
+      document.body.appendChild(sidebar);
     }
 
     if (!sidebar) {
