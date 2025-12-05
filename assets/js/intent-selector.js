@@ -1,40 +1,39 @@
 // ABOUTME: Intent selector modal overlay for Wikipedia Dynamic View prototype
 // ABOUTME: Shows a modal asking users their intent, then triggers appropriate view transformation
 
-(function() {
+(function () {
   'use strict';
 
-  // Configuration for intent modes
+  // Configuration for intent modes (ordered: Full Article first, then Quick Facts, Teach Me, Research)
   const INTENT_MODES = {
+    'full-article': {
+      id: 'full-article',
+      title: 'Full Article',
+      description: 'Standard Wikipedia view',
+      subtitle: 'Complete encyclopedia entry'
+    },
     'quick-facts': {
       id: 'quick-facts',
-      icon: '🎯',
       title: 'Quick Facts',
       description: 'Key information at a glance',
       subtitle: 'Numbers, dates, and essentials'
     },
     'teach-me': {
       id: 'teach-me',
-      icon: '📚',
       title: 'Teach Me',
       description: 'Interactive learning experience',
       subtitle: 'Step-by-step explanations'
     },
-    'research': {
-      id: 'research',
-      icon: '🔬',
-      title: 'Research',
-      description: 'Deep dive with citations',
-      subtitle: 'Full academic detail'
-    },
-    'full-article': {
-      id: 'full-article',
-      icon: '📖',
-      title: 'Full Article',
-      description: 'Standard Wikipedia view',
-      subtitle: 'Complete encyclopedia entry'
+    'glossary': {
+      id: 'glossary',
+      title: 'Glossary',
+      description: 'Look up terms and definitions',
+      subtitle: 'Quick reference A-Z'
     }
   };
+
+  // Default intent when none is specified
+  const DEFAULT_INTENT = 'full-article';
 
   // Get URL parameters
   function getUrlParams() {
@@ -101,7 +100,6 @@
       card.className = 'intent-card';
       card.dataset.intent = mode.id;
       card.innerHTML = `
-        <span class="intent-card-icon">${mode.icon}</span>
         <span class="intent-card-title">${mode.title}</span>
         <span class="intent-card-description">${mode.description}</span>
         <span class="intent-card-subtitle">${mode.subtitle}</span>
@@ -110,6 +108,8 @@
       card.addEventListener('click', () => {
         selectIntent(mode.id);
         closeModal(overlay);
+        // Create the sidebar switcher after modal selection
+        setTimeout(() => createModeSwitcher(mode.id), 350);
       });
 
       // Keyboard navigation
@@ -118,6 +118,7 @@
           e.preventDefault();
           selectIntent(mode.id);
           closeModal(overlay);
+          setTimeout(() => createModeSwitcher(mode.id), 350);
         }
       });
 
@@ -160,6 +161,7 @@
         // Default to full-article if user dismisses
         selectIntent('full-article');
         closeModal(modal);
+        setTimeout(() => createModeSwitcher('full-article'), 350);
         document.removeEventListener('keydown', handleEscape);
       }
     };
@@ -190,97 +192,114 @@
     console.log(`[Intent Selector] Selected: ${intentId}`);
   }
 
-  // Create floating mode switcher button
+  // Create sidebar mode switcher with unique classes to avoid Wikipedia CSS conflicts
   function createModeSwitcher(currentIntent) {
-    const switcher = document.createElement('div');
-    switcher.id = 'intent-mode-switcher';
-    switcher.className = 'intent-mode-switcher';
+    console.log('[Intent Selector] Creating mode switcher for:', currentIntent);
 
-    const currentMode = INTENT_MODES[currentIntent] || INTENT_MODES['full-article'];
+    // Remove existing switcher if present
+    const existing = document.getElementById('learning-mode-switcher');
+    if (existing) existing.remove();
 
-    const button = document.createElement('button');
-    button.className = 'intent-switcher-button';
-    button.innerHTML = `
-      <span class="intent-switcher-icon">${currentMode.icon}</span>
-      <span class="intent-switcher-label">${currentMode.title}</span>
-      <span class="intent-switcher-chevron">▼</span>
-    `;
+    // Try to find the Appearance container
+    let appearanceContainer = document.getElementById('vector-appearance-pinned-container');
+    console.log('[Intent Selector] Found pinned container:', !!appearanceContainer);
 
-    const dropdown = document.createElement('div');
-    dropdown.className = 'intent-switcher-dropdown';
+    if (!appearanceContainer || !appearanceContainer.querySelector('.vector-appearance')) {
+      appearanceContainer = document.getElementById('vector-appearance-unpinned-container');
+      console.log('[Intent Selector] Trying unpinned container:', !!appearanceContainer);
+    }
 
+    if (!appearanceContainer) {
+      console.warn('[Intent Selector] Appearance container not found - cannot create sidebar switcher');
+      return null;
+    }
+
+    // Create wrapper with unique classes
+    const wrapper = document.createElement('div');
+    wrapper.className = 'learning-mode-panel';
+    wrapper.id = 'learning-mode-switcher';
+
+    // Title
+    const title = document.createElement('div');
+    title.className = 'learning-mode-title';
+    title.textContent = 'Learning mode';
+    wrapper.appendChild(title);
+
+    // Options container with left border
+    const options = document.createElement('div');
+    options.className = 'learning-mode-options';
+
+    // Radio buttons with simple structure
     Object.values(INTENT_MODES).forEach(mode => {
-      const option = document.createElement('button');
-      option.className = 'intent-switcher-option' + (mode.id === currentIntent ? ' active' : '');
-      option.dataset.intent = mode.id;
-      option.innerHTML = `
-        <span class="intent-option-icon">${mode.icon}</span>
-        <span class="intent-option-text">
-          <span class="intent-option-title">${mode.title}</span>
-          <span class="intent-option-desc">${mode.description}</span>
-        </span>
-      `;
+      const label = document.createElement('label');
+      label.className = 'learning-mode-option';
 
-      option.addEventListener('click', (e) => {
-        e.stopPropagation();
-        selectIntent(mode.id);
-        updateSwitcher(switcher, mode.id);
-        dropdown.classList.remove('visible');
-      });
+      const input = document.createElement('input');
+      input.type = 'radio';
+      input.name = 'learning-mode';
+      input.value = mode.id;
+      input.checked = mode.id === currentIntent;
 
-      dropdown.appendChild(option);
+      input.addEventListener('change', () => selectIntent(mode.id));
+
+      const text = document.createElement('span');
+      text.textContent = mode.title;
+
+      label.appendChild(input);
+      label.appendChild(text);
+      options.appendChild(label);
     });
 
-    button.addEventListener('click', (e) => {
-      e.stopPropagation();
-      dropdown.classList.toggle('visible');
-    });
+    wrapper.appendChild(options);
 
-    // Close dropdown when clicking outside
-    document.addEventListener('click', () => {
-      dropdown.classList.remove('visible');
-    });
+    // Insert into appearance container
+    const appearanceContent = appearanceContainer.querySelector('.vector-pinnable-element');
+    console.log('[Intent Selector] Found pinnable element:', !!appearanceContent);
 
-    switcher.appendChild(button);
-    switcher.appendChild(dropdown);
+    if (appearanceContent) {
+      const headerEl = appearanceContent.querySelector('.vector-pinnable-header');
+      if (headerEl && headerEl.nextSibling) {
+        appearanceContent.insertBefore(wrapper, headerEl.nextSibling);
+        console.log('[Intent Selector] Inserted switcher after header');
+      } else {
+        appearanceContent.appendChild(wrapper);
+        console.log('[Intent Selector] Appended switcher to pinnable element');
+      }
+    } else {
+      appearanceContainer.appendChild(wrapper);
+      console.log('[Intent Selector] Appended switcher to container');
+    }
 
-    return switcher;
+    console.log('[Intent Selector] Mode switcher created successfully');
+    return wrapper;
   }
 
   // Update switcher display
   function updateSwitcher(switcher, intentId) {
-    const mode = INTENT_MODES[intentId];
-    const button = switcher.querySelector('.intent-switcher-button');
-    button.querySelector('.intent-switcher-icon').textContent = mode.icon;
-    button.querySelector('.intent-switcher-label').textContent = mode.title;
+    if (!switcher) return;
 
-    // Update active state
-    switcher.querySelectorAll('.intent-switcher-option').forEach(opt => {
-      opt.classList.toggle('active', opt.dataset.intent === intentId);
-    });
+    const input = switcher.querySelector(`input[value="${intentId}"]`);
+    if (input) {
+      input.checked = true;
+    }
   }
 
   // Initialize the intent selector system
   function init() {
     const params = getUrlParams();
 
-    // If intent already set in URL, just show the switcher
-    if (params.intent && INTENT_MODES[params.intent]) {
-      const switcher = createModeSwitcher(params.intent);
-      document.body.appendChild(switcher);
+    // Use intent from URL if valid, otherwise default to full-article
+    const activeIntent = (params.intent && INTENT_MODES[params.intent])
+      ? params.intent
+      : DEFAULT_INTENT;
 
-      // Trigger the view transformation
-      selectIntent(params.intent);
-    }
-    // Otherwise show the modal
-    else if (!params.skipModal) {
-      // Small delay to let page render first
-      setTimeout(() => {
-        showModal();
-      }, 500);
-    }
+    // Create the switcher and select the intent
+    setTimeout(() => {
+      createModeSwitcher(activeIntent);
+      selectIntent(activeIntent);
+    }, 300);
 
-    console.log('[Intent Selector] Initialized');
+    console.log('[Intent Selector] Initialized with intent:', activeIntent);
   }
 
   // Expose for external use
