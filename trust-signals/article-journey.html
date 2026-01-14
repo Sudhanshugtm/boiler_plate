@@ -8,73 +8,44 @@
 	<link href="../assets/css/wikipedia-site.css" rel="stylesheet"/>
 	<link href="../assets/css/minerva-mobile.css" rel="stylesheet"/>
 	<style>
-		/* Trust Signal Styles */
-		.trust-signal {
-			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Lato, sans-serif;
-		}
-		.article-journey {
-			background: linear-gradient(135deg, #f8f9fa 0%, #eaf3ff 100%);
-			border-left: 4px solid #14866d;
-			padding: 16px;
+		/* Wikipedia Mobile Trust Signal Styles - Authentic & Minimal */
+
+		/* Trust signal panel - flat, minimal */
+		.trust-panel {
 			margin: 0 16px 16px 16px;
-			border-radius: 8px;
+			border: 1px solid #a2a5b9;
+			padding: 0;
 		}
-		.journey-header {
-			display: flex;
-			align-items: center;
-			gap: 8px;
-			margin-bottom: 16px;
+
+		.trust-header {
+			padding: 12px 16px;
+			border-bottom: 1px solid #eaecf0;
+			background: #f8f9fa;
 		}
-		.journey-title {
-			font-weight: 600;
+
+		.trust-header-title {
 			font-size: 14px;
+			font-weight: 600;
 			color: #202122;
+			margin: 0;
 		}
-		.journey-subtitle {
+
+		.trust-header-subtitle {
 			font-size: 12px;
 			color: #54595d;
-			margin-top: 4px;
+			margin: 4px 0 0 0;
 		}
-		.journey-timeline {
-			position: relative;
-			padding-left: 24px;
-		}
-		.journey-timeline::before {
-			content: '';
-			position: absolute;
-			left: 6px;
-			top: 8px;
-			bottom: 8px;
-			width: 2px;
-			background: #eaecf0;
-		}
+
+		/* Timeline events - clean Wikipedia style */
 		.journey-event {
-			position: relative;
-			margin-bottom: 16px;
+			padding: 16px;
+			border-bottom: 1px solid #eaecf0;
 		}
-		.journey-event::before {
-			content: '';
-			position: absolute;
-			left: -24px;
-			top: 4px;
-			width: 12px;
-			height: 12px;
-			border-radius: 50%;
-			background: #3366cc;
-			border: 2px solid white;
-			box-shadow: 0 0 0 2px #eaecf0;
+
+		.journey-event:last-child {
+			border-bottom: none;
 		}
-		.journey-event.resolved::before {
-			background: #14866d;
-		}
-		.journey-event.debating::before {
-			background: #edab00;
-			animation: blink 1.5s infinite;
-		}
-		@keyframes blink {
-			0%, 100% { opacity: 1; }
-			50% { opacity: 0.5; }
-		}
+
 		.event-month {
 			font-size: 11px;
 			font-weight: 600;
@@ -83,67 +54,72 @@
 			letter-spacing: 0.5px;
 			margin-bottom: 4px;
 		}
+
 		.event-title {
+			font-size: 15px;
 			font-weight: 600;
-			font-size: 14px;
 			color: #202122;
-			margin-bottom: 4px;
+			margin: 0 0 4px 0;
 		}
+
 		.event-description {
-			font-size: 13px;
+			font-size: 14px;
 			color: #54595d;
-			line-height: 1.4;
-			margin-bottom: 6px;
+			line-height: 1.5;
+			margin: 0 0 8px 0;
 		}
+
 		.event-meta {
 			display: flex;
 			align-items: center;
 			gap: 12px;
 			font-size: 12px;
+			color: #54595d;
+			flex-wrap: wrap;
 		}
+
 		.event-status {
 			display: inline-flex;
 			align-items: center;
-			gap: 4px;
-			padding: 2px 8px;
-			border-radius: 12px;
-			font-weight: 600;
+			gap: 3px;
+			background: #eaecf0;
+			padding: 2px 6px;
+			font-size: 11px;
+			font-weight: 500;
+			border-radius: 2px;
 		}
-		.status-resolved {
-			background: #d5fdf4;
-			color: #14866d;
+
+		.event-status.active {
+			background: #d33;
+			color: white;
 		}
-		.status-debating {
-			background: #fef3c7;
-			color: #945600;
-		}
-		.status-compromise {
-			background: #edeaff;
-			color: #5c39cc;
-		}
-		.editor-count {
-			display: flex;
-			align-items: center;
-			gap: 4px;
-			color: #54595d;
-		}
+
 		.view-discussion {
 			color: #3366cc;
 			text-decoration: none;
-			font-size: 12px;
-			font-weight: 500;
+			font-size: 13px;
 		}
-		.collaboration-badge {
+
+		.view-discussion:active {
+			opacity: 0.7;
+		}
+
+		.human-badge {
 			display: inline-flex;
 			align-items: center;
-			gap: 4px;
+			gap: 3px;
 			background: #eaecf0;
-			color: #54595d;
+			padding: 2px 6px;
 			font-size: 11px;
-			font-weight: 600;
-			padding: 3px 8px;
-			border-radius: 12px;
-			margin-top: 8px;
+			border-radius: 2px;
+		}
+
+		.collaboration-note {
+			padding: 12px 16px;
+			background: #f8f9fa;
+			border-top: 1px solid #eaecf0;
+			font-size: 13px;
+			color: #54595d;
 		}
 	</style>
 </head>
@@ -168,88 +144,81 @@
 		<h1 id="firstHeading" style="font-size: 24px; font-weight: 700; color: #202122; padding: 8px 16px 0 16px; margin: 0;">Albert Einstein</h1>
 
 		<!-- Trust Signal: Article Journey -->
-		<div class="trust-signal">
-			<div class="article-journey">
-				<div class="journey-header">
-					<span style="font-size: 20px;">📜</span>
-					<div>
-						<div class="journey-title">How this article was built</div>
-						<div class="journey-subtitle">18 years of human collaboration</div>
-					</div>
+		<div class="trust-panel">
+			<div class="trust-header">
+				<div class="trust-header-title">Article history</div>
+				<div class="trust-header-subtitle">18 years of human collaboration</div>
+			</div>
+
+			<div class="journey-event">
+				<div class="event-month">January 2025 • Active</div>
+				<div class="event-title">Adding political views section</div>
+				<div class="event-description">
+					Debating whether to expand beyond his well-documented pacifism and Zionism.
 				</div>
-
-				<div class="journey-timeline">
-					<div class="journey-event resolved">
-						<div class="event-month">December 2024</div>
-						<div class="event-title">Reorganized "Early life" section</div>
-						<div class="event-description">
-							"Restructured to follow chronological flow while preserving important context about his family background."
-						</div>
-						<div class="event-meta">
-							<span class="event-status status-resolved">✓ RESOLVED</span>
-							<span class="editor-count">👥 15 editors</span>
-							<span class="editor-count">⏱️ 3 day discussion</span>
-						</div>
-					</div>
-
-					<div class="journey-event resolved">
-						<div class="event-month">November 2024</div>
-						<div class="event-title">Debated: Controversy section</div>
-						<div class="event-description">
-							"After extensive discussion about recent allegations, agreed to present multiple sourced viewpoints without taking sides."
-						</div>
-						<div class="event-meta">
-							<span class="event-status status-compromise">⚖️ COMPROMISE</span>
-							<span class="editor-count">👥 34 editors</span>
-							<span class="editor-count">⏱️ week-long debate</span>
-							<a href="#" class="view-discussion">Read discussion →</a>
-						</div>
-					</div>
-
-					<div class="journey-event resolved">
-						<div class="event-month">October 2024</div>
-						<div class="event-title">Fact-check: Birth date verification</div>
-						<div class="event-description">
-							"Verified against multiple German municipal records. Confirmed 14 March 1879 as correct date."
-						</div>
-						<div class="event-meta">
-							<span class="event-status status-resolved">✓ SOURCES VERIFIED</span>
-							<span class="editor-count">👥 8 editors</span>
-							<span class="editor-count">📚 4 primary sources</span>
-						</div>
-					</div>
-
-					<div class="journey-event resolved">
-						<div class="event-month">September 2024</div>
-						<div class="event-title">Nobel Prize citations updated</div>
-						<div class="event-description">
-							"Added recent 2024 citation recognizing Einstein's foundational work on quantum entanglement."
-						</div>
-						<div class="event-meta">
-							<span class="event-status status-resolved">✓ CONSENSUS REACHED</span>
-							<span class="editor-count">👥 22 editors</span>
-							<a href="#" class="view-discussion">See the discussion →</a>
-						</div>
-					</div>
-
-					<div class="journey-event debating">
-						<div class="event-month">January 2025 • ACTIVE</div>
-						<div class="event-title">Adding political views section</div>
-						<div class="event-description">
-							"Debating whether to expand beyond his well-documented pacifism and Zionism..."
-						</div>
-						<div class="event-meta">
-							<span class="event-status status-debating">💬 DEBATING</span>
-							<span class="editor-count">👥 41 editors participating</span>
-							<span class="editor-count">💬 67 replies so far</span>
-							<a href="#" class="view-discussion">Join discussion →</a>
-						</div>
-					</div>
+				<div class="event-meta">
+					<span class="event-status active">● Active discussion</span>
+					<span class="human-badge">👥 41 editors</span>
+					<span>67 replies</span>
+					<a href="#" class="view-discussion">Join discussion →</a>
 				</div>
+			</div>
 
-				<div class="collaboration-badge">
-					🌍 12,458 editors have contributed to this article over 18 years
+			<div class="journey-event">
+				<div class="event-month">December 2024</div>
+				<div class="event-title">Reorganized "Early life" section</div>
+				<div class="event-description">
+					Restructured to follow chronological flow while preserving important context about his family background.
 				</div>
+				<div class="event-meta">
+					<span class="event-status">Resolved</span>
+					<span class="human-badge">👥 15 editors</span>
+					<span>3 day discussion</span>
+				</div>
+			</div>
+
+			<div class="journey-event">
+				<div class="event-month">November 2024</div>
+				<div class="event-title">Debated: Controversy section</div>
+				<div class="event-description">
+					After extensive discussion about recent allegations, agreed to present multiple sourced viewpoints without taking sides.
+				</div>
+				<div class="event-meta">
+					<span class="event-status">Compromise reached</span>
+					<span class="human-badge">👥 34 editors</span>
+					<span>week-long debate</span>
+					<a href="#" class="view-discussion">Read discussion →</a>
+				</div>
+			</div>
+
+			<div class="journey-event">
+				<div class="event-month">October 2024</div>
+				<div class="event-title">Fact-check: Birth date verification</div>
+				<div class="event-description">
+					Verified against multiple German municipal records. Confirmed 14 March 1879 as correct date.
+				</div>
+				<div class="event-meta">
+					<span class="event-status">Sources verified</span>
+					<span class="human-badge">👥 8 editors</span>
+					<span>4 primary sources</span>
+				</div>
+			</div>
+
+			<div class="journey-event">
+				<div class="event-month">September 2024</div>
+				<div class="event-title">Nobel Prize citations updated</div>
+				<div class="event-description">
+					Added recent 2024 citation recognizing Einstein's foundational work on quantum entanglement.
+				</div>
+				<div class="event-meta">
+					<span class="event-status">Consensus reached</span>
+					<span class="human-badge">👥 22 editors</span>
+					<a href="#" class="view-discussion">See the discussion →</a>
+				</div>
+			</div>
+
+			<div class="collaboration-note">
+				12,458 editors have contributed to this article over 18 years
 			</div>
 		</div>
 

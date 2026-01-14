@@ -8,182 +8,127 @@
 	<link href="../assets/css/wikipedia-site.css" rel="stylesheet"/>
 	<link href="../assets/css/minerva-mobile.css" rel="stylesheet"/>
 	<style>
-		/* Trust Signal Styles */
-		.trust-signal {
-			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Lato, sans-serif;
-		}
-		.talk-highlights {
-			background: linear-gradient(135deg, #f8f9fa 0%, #eaf3ff 100%);
-			border-left: 4px solid #795cb2;
-			padding: 16px;
+		/* Wikipedia Mobile Trust Signal Styles - Authentic & Minimal */
+
+		/* Trust signal panel - flat, minimal */
+		.trust-panel {
 			margin: 0 16px 16px 16px;
-			border-radius: 8px;
+			border: 1px solid #a2a5b9;
+			padding: 0;
 		}
-		.talk-header {
-			display: flex;
-			align-items: center;
-			gap: 8px;
-			margin-bottom: 16px;
+
+		.trust-header {
+			padding: 12px 16px;
+			border-bottom: 1px solid #eaecf0;
+			background: #f8f9fa;
 		}
-		.talk-title {
-			font-weight: 600;
+
+		.trust-header-title {
 			font-size: 14px;
+			font-weight: 600;
 			color: #202122;
+			margin: 0;
 		}
-		.talk-subtitle {
+
+		.trust-header-subtitle {
 			font-size: 12px;
 			color: #54595d;
-			margin-top: 4px;
+			margin: 4px 0 0 0;
 		}
+
+		/* Talk highlights - clean Wikipedia style */
+		.talk-item {
+			padding: 16px;
+			border-bottom: 1px solid #eaecf0;
+		}
+
+		.talk-item:last-child {
+			border-bottom: none;
+		}
+
 		.talk-quote {
-			background: white;
-			border-radius: 8px;
-			padding: 14px;
-			margin-bottom: 12px;
-			position: relative;
-		}
-		.talk-quote::before {
-			content: '"';
-			position: absolute;
-			top: 8px;
-			left: 12px;
-			font-size: 40px;
-			color: #eaecf0;
-			font-family: Georgia, serif;
-			line-height: 1;
-		}
-		.talk-quote:last-child {
-			margin-bottom: 0;
-		}
-		.quote-text {
-			font-style: italic;
 			font-size: 14px;
 			color: #202122;
 			line-height: 1.5;
-			margin-bottom: 12px;
-			position: relative;
-			z-index: 1;
+			margin: 0 0 8px 0;
+			padding-left: 12px;
+			border-left: 3px solid #eaecf0;
 		}
-		.quote-text em {
+
+		.talk-quote em {
+			font-style: normal;
 			color: #3366cc;
 		}
-		.quote-context {
-			font-size: 12px;
+
+		.talk-context {
+			font-size: 13px;
 			color: #54595d;
-			margin-bottom: 8px;
-			padding-left: 12px;
-			position: relative;
+			margin: 0 0 8px 0;
 		}
-		.quote-context::before {
-			content: '—';
-			position: absolute;
-			left: 0;
-			color: #54595d;
-		}
-		.quote-meta {
+
+		.talk-meta {
 			display: flex;
 			align-items: center;
 			gap: 12px;
-			font-size: 11px;
-		}
-		.quote-date {
+			font-size: 12px;
 			color: #54595d;
+			flex-wrap: wrap;
 		}
-		.quote-outcome {
+
+		.talk-badge {
 			display: inline-flex;
 			align-items: center;
-			gap: 4px;
-			padding: 3px 8px;
-			border-radius: 12px;
-			font-weight: 600;
+			gap: 3px;
+			background: #eaecf0;
+			padding: 2px 6px;
+			font-size: 11px;
+			font-weight: 500;
+			border-radius: 2px;
 		}
-		.outcome-consensus {
+
+		.talk-badge.active {
+			background: #d33;
+			color: white;
+		}
+
+		.talk-badge.consensus {
 			background: #d5fdf4;
 			color: #14866d;
 		}
-		.outcome-compromise {
-			background: #edeaff;
-			color: #5c39cc;
-		}
-		.outcome-debating {
-			background: #fef3c7;
-			color: #945600;
-		}
-		.editor-link {
+
+		.human-badge {
 			display: inline-flex;
 			align-items: center;
-			gap: 4px;
+			gap: 3px;
 			background: #eaecf0;
-			padding: 2px 8px;
-			border-radius: 12px;
+			padding: 2px 6px;
 			font-size: 11px;
-			color: #54595d;
+			border-radius: 2px;
 		}
-		.conversation-thread {
-			background: #f8f9fa;
-			border-radius: 8px;
-			padding: 12px;
-			margin-top: 8px;
-		}
-		.thread-message {
-			display: flex;
-			gap: 8px;
-			margin-bottom: 8px;
-		}
-		.thread-message:last-child {
-			margin-bottom: 0;
-		}
-		.thread-avatar {
-			width: 28px;
-			height: 28px;
-			border-radius: 50%;
-			background: #3366cc;
-			color: white;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			font-size: 11px;
-			font-weight: 600;
-			flex-shrink: 0;
-		}
-		.thread-content {
-			flex: 1;
-		}
-		.thread-author {
-			font-weight: 600;
-			font-size: 12px;
-			color: #202122;
-			margin-bottom: 2px;
-		}
-		.thread-text {
-			font-size: 12px;
-			color: #54595d;
-			line-height: 1.4;
-		}
-		.view-full-talk {
-			display: inline-flex;
-			align-items: center;
-			gap: 6px;
-			background: #795cb2;
-			color: white;
+
+		.view-talk-link {
+			color: #3366cc;
 			text-decoration: none;
-			padding: 8px 16px;
-			border-radius: 20px;
 			font-size: 13px;
-			font-weight: 500;
-			margin-top: 12px;
 		}
-		.human-stamp {
-			display: inline-flex;
-			align-items: center;
-			gap: 4px;
-			background: #14866d;
-			color: white;
-			font-size: 11px;
-			font-weight: 600;
-			padding: 4px 8px;
-			border-radius: 12px;
-			margin-top: 8px;
+
+		.human-note {
+			padding: 12px 16px;
+			background: #f8f9fa;
+			border-top: 1px solid #eaecf0;
+			font-size: 13px;
+			color: #54595d;
+		}
+
+		.view-all-link {
+			display: block;
+			padding: 12px 16px;
+			background: #f8f9fa;
+			border-top: 1px solid #eaecf0;
+			color: #3366cc;
+			text-decoration: none;
+			font-size: 14px;
+			font-weight: 500;
 		}
 	</style>
 </head>
@@ -208,121 +153,70 @@
 		<h1 id="firstHeading" style="font-size: 24px; font-weight: 700; color: #202122; padding: 8px 16px 0 16px; margin: 0;">Albert Einstein</h1>
 
 		<!-- Trust Signal: Talk Highlights -->
-		<div class="trust-signal">
-			<div class="talk-highlights">
-				<div class="talk-header">
-					<span style="font-size: 20px;">💬</span>
-					<div>
-						<div class="talk-title">Human voices behind this article</div>
-						<div class="talk-subtitle">Real excerpts from 127 discussions that shaped this article</div>
-					</div>
-				</div>
-
-				<!-- Quote 1: Consensus Building -->
-				<div class="talk-quote">
-					<div class="quote-text">
-						"After 3 weeks of debate, we finally agreed on wording that respects both scientific accuracy and religious perspectives. This wasn't about compromise—it was about <em>understanding</em> both viewpoints deeply enough to synthesize them."
-					</div>
-					<div class="quote-context">
-						<div class="editor-link">PhysicsProfessor (8,234 edits)</div> on the "Religious views" section
-					</div>
-					<div class="quote-meta">
-						<span class="quote-date">March 2023</span>
-						<span class="quote-outcome outcome-consensus">✓ CONSENSUS REACHED</span>
-						<span class="editor-count">23 editors involved</span>
-					</div>
-				</div>
-
-				<!-- Quote 2: Verification Effort -->
-				<div class="talk-quote">
-					<div class="quote-text">
-						"I just spent 4 hours in German archives digitizing birth records from 1879. The date is absolutely confirmed: 14 March, not 15th as some sources claim. I've uploaded scans to the talk page for verification."
-					</div>
-					<div class="quote-context">
-						<div class="editor-link">ArchiveDigger (2,145 edits)</div> responding to a date discrepancy
-					</div>
-					<div class="conversation-thread">
-						<div class="thread-message">
-							<div class="thread-avatar">Q</div>
-							<div class="thread-content">
-								<div class="thread-author">QuestionableQuest</div>
-								<div class="thread-text">Thank you! This level of verification is why I trust Wikipedia over random websites.</div>
-							</div>
-						</div>
-						<div class="thread-message">
-							<div class="thread-avatar" style="background: #14866d;">A</div>
-							<div class="thread-content">
-								<div class="thread-author">AdminUser</div>
-								<div class="thread-text">@ArchiveDigger, these sources are now cited in the article. Excellent work!</div>
-							</div>
-						</div>
-					</div>
-					<div class="quote-meta">
-						<span class="quote-date">October 2022</span>
-						<span class="quote-outcome outcome-consensus">✓ SOURCES VERIFIED</span>
-					</div>
-				</div>
-
-				<!-- Quote 3: Ongoing Debate -->
-				<div class="talk-quote">
-					<div class="quote-text">
-						"We're not trying to hide anything about Einstein's political affiliations. The question is whether to include <em>every</em> letter he signed. My concern is that listing them all makes the article read like a political inventory rather than a biography."
-					</div>
-					<div class="quote-context">
-						<div class="editor-link">BiographyWriter (5,678 edits)</div> starting a debate about the Political views section
-					</div>
-					<div class="conversation-thread">
-						<div class="thread-message">
-							<div class="thread-avatar" style="background: #edab00;">H</div>
-							<div class="thread-content">
-								<div class="thread-author">HistoryBuff2022</div>
-								<div class="thread-text">But these affiliations are historically significant! They show how his views evolved over time.</div>
-							</div>
-						</div>
-						<div class="thread-message">
-							<div class="thread-avatar">B</div>
-							<div class="thread-content">
-								<div class="thread-author">BiographyWriter</div>
-								<div class="thread-text">Absolutely, and I agree. Let's focus on the <em>evolution</em> rather than an exhaustive list. That's what the sources emphasize anyway.</div>
-							</div>
-						</div>
-						<div class="thread-message">
-							<div class="thread-avatar" style="background: #795cb2;">M</div>
-							<div class="thread-content">
-								<div class="thread-author">Moderator123</div>
-								<div class="thread-text">This feels like a good direction. Let's work on that wording together.</div>
-							</div>
-						</div>
-					</div>
-					<div class="quote-meta">
-						<span class="quote-date">December 2024 • ONGOING</span>
-						<span class="quote-outcome outcome-debating">💬 47 replies</span>
-					</div>
-				</div>
-
-				<!-- Quote 4: NPOV Achievement -->
-				<div class="talk-quote">
-					<div class="quote-text">
-						"As someone who has studied Einstein for 30 years, I'm genuinely impressed by how this article handles the debates around general relativity. The editors here have managed to present both the initial skepticism and eventual acceptance without taking sides—they let the <em>science</em> speak. That's rare."
-					</div>
-					<div class="quote-context">
-						<div class="editor-link">PhysicistObserver (156 edits)</div> academic contributor leaving positive feedback
-					</div>
-					<div class="quote-meta">
-						<span class="quote-date">September 2024</span>
-						<span class="quote-outcome outcome-consensus">✓ EXTERNAL VALIDATION</span>
-					</div>
-				</div>
-
-				<div class="human-stamp">
-					👥 These are real humans collaborating — no AI involved
-				</div>
-
-				<a href="#" class="view-full-talk">
-					<span>💬</span>
-					View all 12,458 talk page messages
-				</a>
+		<div class="trust-panel">
+			<div class="trust-header">
+				<div class="trust-header-title">Human voices behind this article</div>
+				<div class="trust-header-subtitle">Real excerpts from 127 discussions that shaped this article</div>
 			</div>
+
+			<div class="talk-item">
+				<div class="talk-quote">
+					"After 3 weeks of debate, we finally agreed on wording that respects both scientific accuracy and religious perspectives. This wasn't about compromise—it was about <em>understanding</em> both viewpoints deeply enough to synthesize them."
+				</div>
+				<div class="talk-context">PhysicsProfessor (8,234 edits) on the "Religious views" section</div>
+				<div class="talk-meta">
+					<span class="talk-badge consensus">Consensus reached</span>
+					<span>March 2023</span>
+					<span class="human-badge">👥 23 editors</span>
+					<a href="#" class="view-talk-link">View discussion →</a>
+				</div>
+			</div>
+
+			<div class="talk-item">
+				<div class="talk-quote">
+					"I just spent 4 hours in German archives digitizing birth records from 1879. The date is absolutely confirmed: 14 March, not 15th as some sources claim. I've uploaded scans to the talk page for verification."
+				</div>
+				<div class="talk-context">ArchiveDigger (2,145 edits) responding to a date discrepancy</div>
+				<div class="talk-meta">
+					<span class="talk-badge consensus">Sources verified</span>
+					<span>October 2022</span>
+					<span class="human-badge">👥 8 editors</span>
+					<a href="#" class="view-talk-link">View discussion →</a>
+				</div>
+			</div>
+
+			<div class="talk-item">
+				<div class="talk-quote">
+					"We're not trying to hide anything about Einstein's political affiliations. The question is whether to include <em>every</em> letter he signed. My concern is that listing them all makes the article read like a political inventory rather than a biography."
+				</div>
+				<div class="talk-context">BiographyWriter (5,678 edits) starting a debate about the Political views section</div>
+				<div class="talk-meta">
+					<span class="talk-badge active">Active debate</span>
+					<span>December 2024 • 47 replies</span>
+					<span class="human-badge">👥 34 editors</span>
+					<a href="#" class="view-talk-link">Join discussion →</a>
+				</div>
+			</div>
+
+			<div class="talk-item">
+				<div class="talk-quote">
+					"As someone who has studied Einstein for 30 years, I'm genuinely impressed by how this article handles the debates around general relativity. The editors here have managed to present both the initial skepticism and eventual acceptance without taking sides—they let the <em>science</em> speak. That's rare."
+				</div>
+				<div class="talk-context">PhysicistObserver (156 edits) academic contributor leaving positive feedback</div>
+				<div class="talk-meta">
+					<span class="talk-badge consensus">External validation</span>
+					<span>September 2024</span>
+					<a href="#" class="view-talk-link">View discussion →</a>
+				</div>
+			</div>
+
+			<div class="human-note">
+				These are real humans collaborating — no AI involved
+			</div>
+
+			<a href="#" class="view-all-link">
+				View all 12,458 talk page messages →
+			</a>
 		</div>
 
 		<!-- Sample Content Preview -->

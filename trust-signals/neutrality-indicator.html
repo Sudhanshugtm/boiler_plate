@@ -8,142 +8,125 @@
 	<link href="../assets/css/wikipedia-site.css" rel="stylesheet"/>
 	<link href="../assets/css/minerva-mobile.css" rel="stylesheet"/>
 	<style>
-		/* Trust Signal Styles */
-		.trust-signal {
-			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Lato, sans-serif;
-		}
-		.neutrality-panel {
-			background: linear-gradient(135deg, #f8f9fa 0%, #eaf3ff 100%);
-			border-left: 4px solid #5c39cc;
-			padding: 16px;
+		/* Wikipedia Mobile Trust Signal Styles - Authentic & Minimal */
+
+		/* Trust signal panel - flat, minimal */
+		.trust-panel {
 			margin: 0 16px 16px 16px;
-			border-radius: 8px;
+			border: 1px solid #a2a5b9;
+			padding: 0;
 		}
-		.neutrality-header {
-			display: flex;
-			align-items: center;
-			gap: 8px;
-			margin-bottom: 16px;
+
+		.trust-header {
+			padding: 12px 16px;
+			border-bottom: 1px solid #eaecf0;
+			background: #f8f9fa;
 		}
-		.neutrality-title {
-			font-weight: 600;
+
+		.trust-header-title {
 			font-size: 14px;
+			font-weight: 600;
 			color: #202122;
+			margin: 0;
 		}
-		.neutrality-subtitle {
+
+		.trust-header-subtitle {
 			font-size: 12px;
 			color: #54595d;
-			margin-top: 4px;
+			margin: 4px 0 0 0;
 		}
+
+		/* Neutrality metrics - clean Wikipedia style */
+		.neutrality-item {
+			padding: 16px;
+			border-bottom: 1px solid #eaecf0;
+		}
+
+		.neutrality-item:last-child {
+			border-bottom: none;
+		}
+
 		.neutrality-metric {
-			background: white;
-			border: 1px solid #eaecf0;
-			border-radius: 8px;
-			padding: 12px;
-			margin-bottom: 12px;
-		}
-		.neutrality-metric:last-child {
-			margin-bottom: 0;
-		}
-		.metric-header {
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			margin-bottom: 8px;
-		}
-		.metric-title {
-			font-weight: 600;
-			font-size: 13px;
-			color: #202122;
-			display: flex;
-			align-items: center;
-			gap: 6px;
-		}
-		.metric-value {
-			font-size: 24px;
-			font-weight: 700;
-			color: #14866d;
-		}
-		.metric-description {
-			font-size: 12px;
-			color: #54595d;
-			line-height: 1.4;
-		}
-		.viewpoint-bar {
-			height: 8px;
-			background: #eaecf0;
-			border-radius: 4px;
-			overflow: hidden;
-			margin: 8px 0;
-		}
-		.viewpoint-segment {
-			height: 100%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			font-size: 10px;
-			font-weight: 600;
-			color: white;
-		}
-		.viewpoint-science {
-			background: #3366cc;
-		}
-		.viewpoint-biographical {
-			background: #14866d;
-		}
-		.viewpoint-cultural {
-			background: #edab00;
-		}
-		.viewpoint-historical {
-			background: #795cb2;
-		}
-		.section-neutrality {
-			background: white;
-			border: 1px solid #eaecf0;
-			border-left: 3px solid #14866d;
-			border-radius: 4px;
-			padding: 12px;
-			margin-bottom: 8px;
-		}
-		.section-name {
-			font-weight: 600;
-			font-size: 13px;
-			color: #202122;
 			margin-bottom: 4px;
 		}
-		.neutrality-note {
-			font-size: 12px;
-			color: #54595d;
-			line-height: 1.4;
+
+		.neutrality-metric-title {
+			font-size: 14px;
+			font-weight: 500;
+			color: #202122;
 		}
+
+		.neutrality-metric-value {
+			font-size: 14px;
+			font-weight: 600;
+			color: #202122;
+		}
+
+		.neutrality-description {
+			font-size: 13px;
+			color: #54595d;
+			line-height: 1.5;
+			margin: 0;
+		}
+
+		/* Section list */
+		.section-item {
+			padding: 12px 16px;
+			border-bottom: 1px solid #eaecf0;
+		}
+
+		.section-item:last-child {
+			border-bottom: none;
+		}
+
+		.section-title {
+			font-size: 14px;
+			font-weight: 500;
+			color: #202122;
+			margin: 0 0 4px 0;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+
+		.section-badge {
+			display: inline-flex;
+			align-items: center;
+			gap: 3px;
+			background: #eaecf0;
+			padding: 2px 6px;
+			font-size: 11px;
+			font-weight: 500;
+			border-radius: 2px;
+		}
+
+		.section-badge.active {
+			background: #d33;
+			color: white;
+		}
+
+		.section-note {
+			font-size: 13px;
+			color: #54595d;
+			line-height: 1.5;
+			margin: 0 0 4px 0;
+		}
+
 		.discussion-link {
 			color: #3366cc;
 			text-decoration: none;
-			font-size: 12px;
-			font-weight: 500;
-			display: inline-flex;
-			align-items: center;
-			gap: 4px;
+			font-size: 13px;
 		}
-		.npo-badge {
-			display: inline-flex;
-			align-items: center;
-			gap: 4px;
-			background: #eaf3ff;
-			color: #3366cc;
-			font-size: 11px;
-			font-weight: 600;
-			padding: 4px 10px;
-			border-radius: 12px;
-		}
-		.human-effort {
-			background: #14866d;
-			color: white;
-			font-size: 11px;
-			font-weight: 600;
-			padding: 3px 8px;
-			border-radius: 12px;
-			margin-left: auto;
+
+		.human-note {
+			padding: 12px 16px;
+			background: #f8f9fa;
+			border-top: 1px solid #eaecf0;
+			font-size: 13px;
+			color: #54595d;
 		}
 	</style>
 </head>
@@ -168,92 +151,70 @@
 		<h1 id="firstHeading" style="font-size: 24px; font-weight: 700; color: #202122; padding: 8px 16px 0 16px; margin: 0;">Albert Einstein</h1>
 
 		<!-- Trust Signal: Neutrality Indicator -->
-		<div class="trust-signal">
-			<div class="neutrality-panel">
-				<div class="neutrality-header">
-					<span style="font-size: 20px;">⚖️</span>
-					<div style="flex: 1;">
-						<div class="neutrality-title">Neutrality verified by humans</div>
-						<div class="neutrality-subtitle">This article reflects 127 editor discussions about representing all viewpoints fairly</div>
-					</div>
-				</div>
+		<div class="trust-panel">
+			<div class="trust-header">
+				<div class="trust-header-title">Neutrality verified by humans</div>
+				<div class="trust-header-subtitle">127 editor discussions about representing all viewpoints fairly</div>
+			</div>
 
+			<div class="neutrality-item">
 				<div class="neutrality-metric">
-					<div class="metric-header">
-						<div class="metric-title">
-							<span>📊</span>
-							<span>Editor discussions</span>
-						</div>
-						<div class="metric-value">127</div>
-					</div>
-					<div class="metric-description">Debates about how to fairly represent different perspectives on controversial topics</div>
+					<span class="neutrality-metric-title">Editor discussions</span>
+					<span class="neutrality-metric-value">127</span>
 				</div>
+				<p class="neutrality-description">Debates about how to fairly represent different perspectives on controversial topics</p>
+			</div>
 
+			<div class="neutrality-item">
 				<div class="neutrality-metric">
-					<div class="metric-header">
-						<div class="metric-title">
-							<span>🌍</span>
-							<span>Contributing countries</span>
-						</div>
-						<div class="metric-value">47</div>
-					</div>
-					<div class="metric-description">Editors from 47 countries have helped ensure diverse viewpoints</div>
+					<span class="neutrality-metric-title">Contributing countries</span>
+					<span class="neutrality-metric-value">47</span>
 				</div>
+				<p class="neutrality-description">Editors from 47 countries have helped ensure diverse viewpoints</p>
+			</div>
 
+			<div class="neutrality-item">
 				<div class="neutrality-metric">
-					<div class="metric-header">
-						<div class="metric-title">
-							<span>⏱️</span>
-							<span>Years of refinement</span>
-						</div>
-						<div class="metric-value">18</div>
-					</div>
-					<div class="metric-description">This article has been continuously improved since 2007</div>
+					<span class="neutrality-metric-title">Years of refinement</span>
+					<span class="neutrality-metric-value">18</span>
 				</div>
+				<p class="neutrality-description">This article has been continuously improved since 2007</p>
+			</div>
 
-				<div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #eaecf0;">
-					<div style="font-weight: 600; font-size: 13px; color: #202122; margin-bottom: 12px;">Viewpoint balance in this article:</div>
-					<div class="viewpoint-bar">
-						<div class="viewpoint-segment viewpoint-science" style="width: 40%;">Science</div>
-						<div class="viewpoint-segment viewpoint-biographical" style="width: 25%;">Bio</div>
-						<div class="viewpoint-segment viewpoint-cultural" style="width: 20%;">Cultural</div>
-						<div class="viewpoint-segment viewpoint-historical" style="width: 15%;">History</div>
-					</div>
-					<div style="font-size: 11px; color: #54595d; margin-top: 4px;">Based on analysis of 235 cited sources and their classifications</div>
+			<div class="section-item">
+				<div class="section-title">
+					Early life and education <span class="section-badge">NPOV verified</span>
 				</div>
+				<p class="section-note">Verified through 12 editor discussions. Birth records and family background cross-referenced from 4 independent German archives.</p>
+				<a href="#" class="discussion-link">See the discussions →</a>
+			</div>
 
-				<div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #eaecf0;">
-					<div style="font-weight: 600; font-size: 13px; color: #202122; margin-bottom: 12px;">Section-by-section neutrality:</div>
-
-					<div class="section-neutrality">
-						<div class="section-name">Early life and education <span class="npo-badge">NPOV ✓</span></div>
-						<div class="neutrality-note">Verified through 12 editor discussions. Birth records and family background cross-referenced from 4 independent German archives.</div>
-						<a href="#" class="discussion-link">💬 See the discussions →</a>
-					</div>
-
-					<div class="section-neutrality">
-						<div class="section-name">Scientific career <span class="npo-badge">NPOV ✓</span></div>
-						<div class="neutrality-note">34 editors debated how to present his annus mirabilis papers. Includes both popular and technical explanations.</div>
-						<a href="#" class="discussion-link">💬 See the discussions →</a>
-					</div>
-
-					<div class="section-neutrality">
-						<div class="section-name">Political views <span class="human-effort">⚠️ Active debate</span></div>
-						<div class="neutrality-note">41 editors currently discussing expansion beyond his documented pacifism. Join to help maintain balance.</div>
-						<a href="#" class="discussion-link">💬 Join the discussion →</a>
-					</div>
-
-					<div class="section-neutrality">
-						<div class="section-name">Religious views <span class="npo-badge">NPOV ✓</span></div>
-						<div class="neutrality-note">After 23 editor discussions, achieved consensus on presenting his evolving relationship with Judaism without taking sides.</div>
-						<a href="#" class="discussion-link">💬 See the discussions →</a>
-					</div>
+			<div class="section-item">
+				<div class="section-title">
+					Scientific career <span class="section-badge">NPOV verified</span>
 				</div>
+				<p class="section-note">34 editors debated how to present his annus mirabilis papers. Includes both popular and technical explanations.</p>
+				<a href="#" class="discussion-link">See the discussions →</a>
+			</div>
 
-				<div style="margin-top: 16px; background: #eaf3ff; padding: 12px; border-radius: 8px; text-align: center;">
-					<div style="font-weight: 600; font-size: 13px; color: #3366cc; margin-bottom: 4px;">👥 This neutrality was achieved by humans</div>
-					<div style="font-size: 12px; color: #54595d;">AI cannot debate, compromise, or build consensus. These 127 discussions represent real people working together for fairness.</div>
+			<div class="section-item">
+				<div class="section-title">
+					Political views <span class="section-badge active">Active debate</span>
 				</div>
+				<p class="section-note">41 editors currently discussing expansion beyond his documented pacifism. Join to help maintain balance.</p>
+				<a href="#" class="discussion-link">Join the discussion →</a>
+			</div>
+
+			<div class="section-item">
+				<div class="section-title">
+					Religious views <span class="section-badge">NPOV verified</span>
+				</div>
+				<p class="section-note">After 23 editor discussions, achieved consensus on presenting his evolving relationship with Judaism without taking sides.</p>
+				<a href="#" class="discussion-link">See the discussions →</a>
+			</div>
+
+			<div class="human-note">
+				This neutrality was achieved by humans. AI cannot debate, compromise, or build consensus. These 127 discussions represent real people working together for fairness.
 			</div>
 		</div>
 
