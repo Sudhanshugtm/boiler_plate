@@ -1,0 +1,855 @@
+/*
+ * Minerva Neue Mobile Skin Styles for Wikipedia Prototyping
+ * Authentic Wikipedia mobile experience
+ * Based on actual Wikimedia mediawiki-skins-MinervaNeue CSS
+ * https://github.com/wikimedia/mediawiki-skins-MinervaNeue
+ *
+ * Sources:
+ * - https://www.mediawiki.org/wiki/Skin:Minerva_Neue
+ * - https://github.com/wikimedia/mediawiki-skins-MinervaNeue
+ * - https://en.wikipedia.org/wiki/Wikipedia:Catalogue_of_CSS_classes
+ */
+
+/* ============================================================
+   MINERVA DESIGN TOKENS (from actual Minerva CSS variables)
+   ============================================================ */
+
+:root {
+	/* Colors from Wikimedia Design System */
+	--color-base: #202122;
+	--color-subtle: #54595d;
+	--color-link: #3366cc;
+	--color-link-visited: #795cb2;
+	--color-progressive: #3366cc;
+	--color-progressive--hover: #2a4b8d;
+	--color-destructive: #d33;
+	--color-error: #d33;
+	--color-warning: #edab00;
+	--color-success: #14866d;
+	--color-disabled: #72777d;
+	--color-base--inverted: #ffffff;
+
+	/* Background colors */
+	--background-color-base-fixed: #ffffff;
+	--background-color-interactive: #f8f9fa;
+	--background-color-progressive-subtle: #eaf3ff;
+	--background-color-disabled: #eaecf0;
+	--background-color-subtle: #eaecf0;
+	--background-color-backdrop-light: rgba(255, 255, 255, 0.65);
+
+	/* Border */
+	--border-color-muted: #eaecf0;
+	--border-color-subtle: #eaecf0;
+	--border-color-base: #a2a5b9;
+	--border-color-progressive: #3366cc;
+	--border-color-destructive: #d33;
+	--border-width-base: 1px;
+	--border-style-base: solid;
+
+	/* Spacing */
+	--spacing-horizontal-button: 12px;
+	--spacing-75: 12px;
+	--padding-content: 16px;
+	--icon-padding-medium: 8px;
+
+	/* Typography */
+	--font-size-minerva-small: 0.875em;
+	--font-size-tag-line: 0.85em;
+	--font-size-base: 1em;
+	--font-size-heading: 1.5em;
+	--line-height-content: 1.6;
+	--line-height-small: 1.5714285;
+
+	/* Icons */
+	--size-icon: 32px;
+	--width-icon-gutter: 12px;
+	--min-width-branding-box-ems: 11.5em;
+	--min-width-breakpoint-tablet: 1000px;
+	--min-width-breakpoint-mobile: 720px;
+	--max-width-breakpoint-tablet: 999px;
+	--max-width-breakpoint-mobile: 719px;
+
+	/* Transitions */
+	--transition-duration-medium: 250ms;
+	--transition-duration-base: 100ms;
+	--transition-timing-function-menu: ease-in-out;
+
+	/* Z-index */
+	--z-index-drawer: 1;
+	--z-index-above-content: 2;
+	--z-index-sticky: 3;
+	--z-index-overlay: 100;
+}
+
+/* ============================================================
+   MOBILE ONLY STYLES (< 720px - actual Minerva breakpoint)
+   ============================================================ */
+
+@media screen and (max-width: 719px) {
+	/* ============================================================
+	  RESET AND BASE STYLES
+	  ============================================================ */
+
+	* {
+		box-sizing: border-box;
+	}
+
+	body {
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Lato, Helvetica, Arial, sans-serif;
+		font-size: 16px;
+		line-height: var(--line-height-content);
+		color: var(--color-base);
+		background: var(--background-color-base-fixed);
+		margin: 0;
+		padding: 0;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	/* Hide desktop-specific elements */
+	.vector-column-start,
+	.vector-sticky-pinned-container,
+	.vector-pinnable-element,
+	.vector-toc,
+	.vector-page-toolbar,
+	.vector-page-titlebar-toc,
+	.codex-sample-links,
+	.vector-pinnable-header {
+		display: none !important;
+	}
+
+	/* Show and style mobile containers */
+	.mw-page-container-inner {
+		display: block !important;
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+
+	.vector-column-end {
+		display: block !important;
+		width: 100% !important;
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+
+	/* Content visibility */
+	.vector-body,
+	#bodyContent,
+	.mw-body-content,
+	.mw-content-text,
+	#mw-content-text {
+		display: block !important;
+		width: 100% !important;
+	}
+
+	.mw-page-container {
+		padding: 0 !important;
+		margin: 0 !important;
+		max-width: 100% !important;
+		min-height: 100vh;
+		display: flex !important;
+		flex-direction: column !important;
+	}
+
+	/* ============================================================
+	  MINERVA HEADER - Authentic Wikipedia Mobile Header
+	  ============================================================ */
+
+	.vector-header-container {
+		position: fixed !important;
+		top: 0 !important;
+		left: 0 !important;
+		right: 0 !important;
+		z-index: var(--z-index-sticky) !important;
+		background: var(--background-color-base-fixed) !important;
+		border-bottom: var(--border-width-base) var(--border-style-base) var(--border-color-subtle) !important;
+		height: 54px !important;
+		display: flex !important;
+		align-items: center !important;
+		padding: 0 var(--padding-content) !important;
+	}
+
+	.vector-header {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: space-between !important;
+		width: 100% !important;
+		height: 100% !important;
+	}
+
+	/* Header start - menu and branding */
+	.vector-header-start {
+		display: flex !important;
+		align-items: center !important;
+		flex: 0 0 auto !important;
+	}
+
+	/* Menu toggle button (hamburger) */
+	.vector-main-menu-dropdown {
+		display: flex !important;
+		flex: 0 0 auto !important;
+	}
+
+	.vector-main-menu-dropdown .vector-dropdown-checkbox {
+		position: absolute !important;
+		opacity: 0 !important;
+		pointer-events: none !important;
+		width: 0 !important;
+		height: 0 !important;
+	}
+
+	/* Menu button styling - authentic Wikipedia mobile hamburger */
+	.vector-dropdown-label {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		width: var(--size-icon) !important;
+		height: var(--size-icon) !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		background: transparent !important;
+		border: none !important;
+		color: var(--color-base) !important;
+		cursor: pointer !important;
+		-webkit-tap-highlight-color: transparent !important;
+	}
+
+	.vector-dropdown-label:active {
+		background: var(--background-color-interactive) !important;
+		border-radius: 2px !important;
+	}
+
+	/* Hide original icon */
+	.vector-dropdown-label .vector-icon {
+		display: none !important;
+	}
+
+	/* Custom hamburger icon - authentic Wikipedia style */
+	.vector-dropdown-label::before {
+		content: '' !important;
+		display: block !important;
+		width: 24px !important;
+		height: 24px !important;
+		background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="%23202122" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/%3E%3C/svg%3E') !important;
+		background-size: contain !important;
+		background-repeat: no-repeat !important;
+		background-position: center !important;
+	}
+
+	.vector-dropdown-label-text {
+		display: none !important;
+	}
+
+	/* Branding box (logo area) - authentic Wikipedia mobile style */
+	.mw-logo {
+		display: flex !important;
+		align-items: center !important;
+		margin-left: 5px !important;
+		text-decoration: none !important;
+	}
+
+	.mw-logo-icon {
+		display: none !important;
+	}
+
+	.mw-logo-wordmark {
+		display: block !important;
+		height: 18px !important;
+		width: auto !important;
+	}
+
+	.mw-logo-tagline {
+		display: none !important;
+	}
+
+	/* Header end - search icon */
+	.vector-header-end {
+		display: flex !important;
+		align-items: center !important;
+		flex: 0 0 auto !important;
+	}
+
+	.vector-search-box-vue {
+		display: flex !important;
+		align-items: center !important;
+	}
+
+	/* Search button - authentic Wikipedia mobile style */
+	.search-toggle {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		width: var(--size-icon) !important;
+		height: var(--size-icon) !important;
+		padding: 0 !important;
+		background: transparent !important;
+		border: none !important;
+		-webkit-tap-highlight-color: transparent !important;
+	}
+
+	.search-toggle:active {
+		background: var(--background-color-interactive) !important;
+		border-radius: 2px !important;
+	}
+
+	.search-toggle .vector-icon {
+		display: none !important;
+	}
+
+	.search-toggle span:last-child {
+		display: none !important;
+	}
+
+	/* Custom search icon - authentic Wikipedia style */
+	.search-toggle::before {
+		content: '' !important;
+		display: block !important;
+		width: 24px !important;
+		height: 24px !important;
+		background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="%23202122" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/%3E%3C/svg%3E') !important;
+		background-size: contain !important;
+		background-repeat: no-repeat !important;
+		background-position: center !important;
+	}
+
+	/* Hide search form by default */
+	.vector-typeahead-search-container,
+	.cdx-typeahead-search {
+		display: none !important;
+	}
+
+	/* Hide user menu on mobile */
+	.vector-user-links,
+	.vector-appearance-landmark,
+	.vector-user-menu-logged-out {
+		display: none !important;
+	}
+
+	/* ============================================================
+	  MOBILE DRAWER MENU - Authentic Wikipedia Mobile Menu
+	  ============================================================ */
+
+	/* Main menu drawer - slides in from left */
+	.vector-main-menu-dropdown .vector-dropdown-content {
+		position: fixed !important;
+		top: 0 !important;
+		left: 0 !important;
+		bottom: 0 !important;
+		min-width: 275px !important;
+		max-width: 80% !important;
+		visibility: hidden !important;
+		background-color: var(--background-color-interactive) !important;
+		z-index: var(--z-index-drawer) !important;
+		overflow-y: auto !important;
+		-webkit-overflow-scrolling: touch !important;
+		transform: translate(-100%, 0) !important;
+		transition: transform var(--transition-duration-medium) var(--transition-timing-function-menu),
+		            visibility var(--transition-duration-medium) var(--transition-timing-function-menu) !important;
+		padding: 0 !important;
+		box-shadow: none !important;
+		border: none !important;
+		border-radius: 0 !important;
+	}
+
+	/* When menu is open */
+	.vector-main-menu-dropdown .vector-dropdown-checkbox:checked ~ .vector-dropdown-content {
+		visibility: visible !important;
+		transform: translate(0, 0) !important;
+		box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1) !important;
+	}
+
+	/* Mask overlay when menu is open */
+	.vector-main-menu-dropdown .vector-dropdown-checkbox ~ * {
+		transition: opacity var(--transition-duration-base) ease !important;
+	}
+
+	.vector-main-menu-dropdown .vector-dropdown-checkbox:not(:checked) ~ .vector-page-wrapper {
+		position: relative !important;
+	}
+
+	/* Menu content styling */
+	.vector-main-menu {
+		padding: 0 !important;
+	}
+
+	.vector-menu-heading {
+		font-size: 0.875em !important;
+		font-weight: 600 !important;
+		color: var(--color-subtle) !important;
+		text-transform: uppercase !important;
+		letter-spacing: 0.5px !important;
+		margin: 16px 0 8px var(--padding-content) !important;
+		padding: 0 !important;
+	}
+
+	.vector-menu-content-list {
+		list-style: none !important;
+		margin: 0 !important;
+		padding: 0 0 22px 0 !important;
+	}
+
+	.vector-menu-content-list li {
+		border-bottom: none !important;
+	}
+
+	.vector-menu-content-list a {
+		display: flex !important;
+		align-items: center !important;
+		padding: 14px var(--padding-content) !important;
+		color: var(--color-base) !important;
+		text-decoration: none !important;
+		font-size: 16px !important;
+		font-weight: 400 !important;
+		-webkit-tap-highlight-color: transparent !important;
+		transition: background-color 100ms ease !important;
+	}
+
+	.vector-menu-content-list a:active,
+	.vector-menu-content-list a:hover {
+		background-color: var(--background-color-disabled) !important;
+	}
+
+	/* Hide pin buttons */
+	.vector-pinnable-header-toggle-button {
+		display: none !important;
+	}
+
+	/* ============================================================
+	  PAGE TITLE - Authentic Wikipedia Mobile Style
+	  ============================================================ */
+
+	#firstHeading {
+		font-size: var(--font-size-heading) !important;
+		font-weight: 700 !important;
+		color: var(--color-base) !important;
+		padding: 8px 0 0 var(--padding-content) !important;
+		margin: 0 !important;
+		line-height: 1.3 !important;
+	}
+
+	/* Tagline under title */
+	#siteSub {
+		display: none !important;
+	}
+
+	/* ============================================================
+	  LAST MODIFIED BAR - Authentic Wikipedia Mobile Component
+	  ============================================================ */
+
+	.minerva-last-edited {
+		display: flex !important;
+		border-bottom: var(--border-width-base) var(--border-style-base) var(--border-color-subtle) !important;
+		background-color: var(--background-color-interactive) !important;
+		color: var(--color-subtle) !important;
+		padding: var(--icon-padding-medium) 0 !important;
+		font-size: var(--font-size-minerva-small) !important;
+	}
+
+	.last-modified-bar__content {
+		display: flex !important;
+		align-items: center !important;
+		width: 100% !important;
+		padding: 0 var(--padding-content) !important;
+	}
+
+	.last-modified-bar__text {
+		flex-grow: 1 !important;
+		padding-right: 1em !important;
+		line-height: var(--line-height-content) !important;
+	}
+
+	.minerva-last-edited a {
+		color: var(--color-link) !important;
+		text-decoration: none !important;
+	}
+
+	.minerva-last-edited a:visited {
+		color: var(--color-link-visited) !important;
+	}
+
+	/* ============================================================
+	  MAIN CONTENT AREA - Authentic Wikipedia Mobile Styling
+	  ============================================================ */
+
+	.mw-body {
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+
+	.mw-body-content {
+		padding: 0 var(--padding-content) var(--padding-content) var(--padding-content) !important;
+		margin: 0 !important;
+		font-size: var(--font-size-base) !important;
+	}
+
+	.mw-parser-output {
+		display: block !important;
+	}
+
+	/* Content text */
+	.mw-body-content p {
+		font-size: var(--font-size-base) !important;
+		line-height: var(--line-height-content) !important;
+		margin: 0 0 16px 0 !important;
+		color: var(--color-base) !important;
+	}
+
+	/* Links - authentic Wikipedia mobile link colors */
+	.mw-body-content a {
+		color: var(--color-link) !important;
+		text-decoration: none !important;
+	}
+
+	.mw-body-content a:visited {
+		color: var(--color-link-visited) !important;
+	}
+
+	.mw-body-content a:active {
+		color: var(--color-progressive) !important;
+	}
+
+	/* Headings - authentic Wikipedia mobile heading styles */
+	.mw-body-content h2 {
+		font-size: 1.125em !important;
+		font-weight: 600 !important;
+		margin: 24px 0 12px 0 !important;
+		padding-bottom: 4px !important;
+		border-bottom: var(--border-width-base) var(--border-style-base) var(--border-color-subtle) !important;
+		color: var(--color-base) !important;
+	}
+
+	.mw-body-content h3 {
+		font-size: 1em !important;
+		font-weight: 600 !important;
+		margin: 20px 0 8px 0 !important;
+		color: var(--color-base) !important;
+	}
+
+	.mw-body-content h4 {
+		font-size: 0.9375em !important;
+		font-weight: 600 !important;
+		margin: 16px 0 8px 0 !important;
+		color: var(--color-base) !important;
+	}
+
+	/* ============================================================
+	  INFOBOX - Full width on mobile
+	  ============================================================ */
+
+	.infobox {
+		width: 100% !important;
+		max-width: 100% !important;
+		margin: 0 0 16px 0 !important;
+		float: none !important;
+		clear: both !important;
+		font-size: 0.875em !important;
+		border: var(--border-width-base) var(--border-style-base) var(--border-color-muted) !important;
+	}
+
+	.infobox img {
+		max-width: 100% !important;
+		height: auto !important;
+	}
+
+	/* ============================================================
+	  IMAGES - Full width on mobile
+	  ============================================================ */
+
+	.mw-body-content img {
+		max-width: 100% !important;
+		height: auto !important;
+	}
+
+	figure[typeof~='mw:File/Thumb'],
+	.thumbinner {
+		max-width: 100% !important;
+		margin: 8px 0 !important;
+		float: none !important;
+	}
+
+	.thumb {
+		float: none !important;
+		margin: 8px 0 !important;
+	}
+
+	/* ============================================================
+	  TABLES - Scrollable on mobile
+	  ============================================================ */
+
+	.wikitable {
+		display: block !important;
+		overflow-x: auto !important;
+		font-size: 0.875em !important;
+		margin: 16px 0 !important;
+		border: var(--border-width-base) var(--border-style-base) var(--border-color-muted) !important;
+	}
+
+	.wikitable td,
+	.wikitable th {
+		padding: 8px !important;
+		border: var(--border-width-base) var(--border-style-base) var(--border-color-muted) !important;
+	}
+
+	/* ============================================================
+	  REFERENCES - Smaller on mobile
+	  ============================================================ */
+
+	.references {
+		font-size: 0.8125em !important;
+		margin: 16px 0 !important;
+		color: var(--color-subtle) !important;
+	}
+
+	.reference-text {
+		font-size: 0.8125em !important;
+	}
+
+	/* ============================================================
+	  PAGE ACTIONS BAR - Authentic Wikipedia Mobile Bottom Bar
+	  ============================================================ */
+
+	.mw-page-container {
+		padding-bottom: 48px !important;
+	}
+
+	/* Add padding for fixed header */
+	.vector-column-end {
+		padding-top: 54px !important;
+	}
+
+	.minerva-page-actions {
+		display: flex !important;
+		position: fixed !important;
+		bottom: 0 !important;
+		left: 0 !important;
+		right: 0 !important;
+		background: var(--background-color-base-fixed) !important;
+		border-top: var(--border-width-base) var(--border-style-base) var(--border-color-subtle) !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		z-index: var(--z-index-sticky) !important;
+		box-shadow: 0 -2px 4px rgba(0,0,0,0.05) !important;
+		height: 48px !important;
+	}
+
+	.page-actions-menu__list {
+		display: flex !important;
+		height: var(--size-icon) !important;
+		justify-content: space-between !important;
+		width: 100% !important;
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+
+	.minerva-action {
+		display: flex !important;
+		flex-direction: column !important;
+		align-items: center !important;
+		justify-content: center !important;
+		padding: 0 var(--spacing-horizontal-button) !important;
+		background: none !important;
+		border: none !important;
+		color: var(--color-subtle) !important;
+		font-size: 0.6875em !important;
+		font-weight: 500 !important;
+		text-decoration: none !important;
+		cursor: pointer !important;
+		-webkit-tap-highlight-color: transparent !important;
+		min-width: 0 !important;
+	}
+
+	.minerva-action:active {
+		background: var(--background-color-interactive) !important;
+	}
+
+	.minerva-action-icon {
+		width: var(--size-icon) !important;
+		height: var(--size-icon) !important;
+		display: block !important;
+	}
+
+	/* Authentic Wikipedia mobile icons */
+	.minerva-action[data-action="edit"] .minerva-action-icon::before {
+		content: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"%3E%3Cpath fill="%2354595d" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/%3E%3C/svg%3E') !important;
+	}
+
+	.minerva-action[data-action="talk"] .minerva-action-icon::before {
+		content: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"%3E%3Cpath fill="%2354595d" d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/%3E%3C/svg%3E') !important;
+	}
+
+	.minerva-action[data-action="history"] .minerva-action-icon::before {
+		content: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"%3E%3Cpath fill="%2354595d" d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/%3E%3C/svg%3E') !important;
+	}
+
+	.minerva-action[data-action="top"] .minerva-action-icon::before {
+		content: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"%3E%3Cpath fill="%2354595d" d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/%3E%3C/svg%3E') !important;
+	}
+
+	/* Hide emoji fallbacks */
+	.minerva-action-icon span {
+		display: none !important;
+	}
+
+	/* ============================================================
+	  FOOTER - Authentic Wikipedia Mobile Footer
+	  ============================================================ */
+
+	.minerva-footer {
+		display: block !important;
+		border-top: var(--border-width-base) var(--border-style-base) var(--border-color-subtle) !important;
+		overflow: auto !important;
+		padding-bottom: 6px !important;
+		margin-top: 42px !important;
+	}
+
+	.mw-footer {
+		padding: 24px var(--padding-content) !important;
+		margin: 0 !important;
+		background: transparent !important;
+	}
+
+	.mw-footer ul {
+		padding: 0 !important;
+		margin: 0 0 16px 0 !important;
+		list-style: none !important;
+	}
+
+	.mw-footer li {
+		padding: 6px 0 !important;
+		font-size: 0.875em !important;
+		list-style: none !important;
+	}
+
+	.mw-footer a {
+		color: var(--color-link) !important;
+	}
+
+	/* Hide duplicate desktop footer elements on mobile */
+	#footer-places-disclaimers,
+	#footer-places-about,
+	#footer-info-lastmod {
+		display: none !important;
+	}
+
+	/* ============================================================
+	  UTILITY CLASSES
+	  ============================================================ */
+
+	.minerva-show-mobile {
+		display: block !important;
+	}
+
+	.minerva-hide-mobile {
+		display: none !important;
+	}
+
+	/* Hide jump to content link */
+	.mw-jump-link {
+		display: none !important;
+	}
+}
+
+/* ============================================================
+   DESKTOP OVERRIDES (hide mobile-specific elements)
+   ============================================================ */
+
+@media screen and (min-width: 720px) {
+	.minerva-show-mobile,
+	.minerva-page-actions,
+	.minerva-last-edited {
+		display: none !important;
+	}
+
+	/* Remove mobile padding on desktop */
+	.vector-column-end {
+		padding-top: 0 !important;
+	}
+}
+
+/* ============================================================
+   DARK MODE SUPPORT - Authentic Wikipedia Mobile Dark Mode
+   ============================================================ */
+
+@media screen and (max-width: 719px) and (prefers-color-scheme: dark) {
+	:root {
+		--color-base: #eaecf0;
+		--color-subtle: #a2a5b9;
+		--background-color-base-fixed: #101418;
+		--background-color-interactive: #1a1a1a;
+		--border-color-muted: #2a2a2a;
+		--border-color-subtle: #2a2a2a;
+		--color-link: #6d9edd;
+		--color-link-visited: #a6a9dd;
+		--color-progressive: #6d9edd;
+	}
+
+	body {
+		background: var(--background-color-base-fixed) !important;
+		color: var(--color-base) !important;
+	}
+
+	.vector-header-container {
+		background: var(--background-color-base-fixed) !important;
+		border-bottom-color: var(--border-color-subtle) !important;
+	}
+
+	.vector-main-menu-dropdown .vector-dropdown-content {
+		background-color: var(--background-color-interactive) !important;
+	}
+
+	#firstHeading,
+	.mw-body-content h2,
+	.mw-body-content h3,
+	.mw-body-content h4 {
+		color: var(--color-base) !important;
+	}
+
+	.mw-body-content h2 {
+		border-bottom-color: var(--border-color-subtle) !important;
+	}
+
+	.mw-body-content a {
+		color: var(--color-link) !important;
+	}
+
+	.mw-body-content a:visited {
+		color: var(--color-link-visited) !important;
+	}
+
+	.minerva-page-actions {
+		background: var(--background-color-base-fixed) !important;
+		border-top-color: var(--border-color-subtle) !important;
+	}
+
+	.minerva-action {
+		color: var(--color-subtle) !important;
+	}
+
+	.minerva-last-edited {
+		background-color: var(--background-color-interactive) !important;
+		border-bottom-color: var(--border-color-subtle) !important;
+	}
+
+	.vector-dropdown-label:active,
+	.search-toggle:active {
+		background: var(--background-color-interactive) !important;
+	}
+
+	.vector-menu-content-list a {
+		color: var(--color-base) !important;
+	}
+
+	.vector-menu-content-list a:active,
+	.vector-menu-content-list a:hover {
+		background-color: var(--border-color-muted) !important;
+	}
+
+	/* Update dark mode icons */
+	.vector-dropdown-label::before {
+		background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="%23eaecf0" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/%3E%3C/svg%3E') !important;
+	}
+
+	.search-toggle::before {
+		background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="%23eaecf0" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/%3E%3C/svg%3E') !important;
+	}
+}

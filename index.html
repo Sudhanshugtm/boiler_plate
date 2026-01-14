@@ -7,6 +7,8 @@
   </title>
   <link href="assets/css/wikipedia-modules.css" rel="stylesheet"/>
   <link href="assets/css/wikipedia-site.css" rel="stylesheet"/>
+  <!-- Minerva Mobile Styles - automatically switches to mobile skin on small screens -->
+  <link href="assets/css/minerva-mobile.css" rel="stylesheet"/>
   <meta content="origin" name="referrer"/>
   <meta content="origin-when-cross-origin" name="referrer"/>
   <meta content="max-image-preview:standard" name="robots"/>
@@ -14,7 +16,7 @@
   <meta content="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Albert_Einstein_1947.jpg/982px-Albert_Einstein_1947.jpg" property="og:image"/>
   <meta content="982" property="og:image:width"/>
   <meta content="1200" property="og:image:height"/>
-  <meta content="width=1120" name="viewport"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <meta content="Albert Einstein - Wikipedia" property="og:title"/>
   <meta content="website" property="og:type"/>
   <link href="//upload.wikimedia.org" rel="preconnect"/>
@@ -3410,6 +3412,12 @@ You can view its source [e]">
         </div>
        </div>
        <div class="mw-body-content" id="mw-content-text">
+        <!-- Minerva Mobile: Last edited bar (only visible on mobile) - Authentic Wikipedia structure -->
+        <a class="last-modified-bar minerva-last-edited" href="#">
+         <span class="last-modified-bar__content">
+          <span class="last-modified-bar__text">Last edited on October 7, 2025 • <a href="#" style="color:inherit">View history</a></span>
+         </span>
+        </a>
         <div class="mw-content-ltr mw-parser-output" dir="ltr" lang="en">
          <div class="shortdescription nomobile noexcerpt noprint searchaux" style="display:none">
           German-born theoretical physicist (1879–1955)
@@ -32342,6 +32350,35 @@ Transclusion expansion time report (%,ms,calls,template)
        </div>
       </div>
      </main>
+    </div>
+    <!-- Minerva Mobile Page Actions Bar (only visible on mobile) - Authentic Wikipedia structure -->
+    <div class="minerva-page-actions">
+     <div class="page-actions-menu__list">
+      <div class="page-actions-menu__list-item">
+       <a class="minerva-action" href="#bodyContent" data-action="edit" title="Edit this page">
+        <span class="minerva-action-icon"></span>
+        <span>Edit</span>
+       </a>
+      </div>
+      <div class="page-actions-menu__list-item">
+       <a class="minerva-action" href="#" onclick="alert('Talk feature coming soon!'); return false;" data-action="talk" title="Talk">
+        <span class="minerva-action-icon"></span>
+        <span>Talk</span>
+       </a>
+      </div>
+      <div class="page-actions-menu__list-item">
+       <a class="minerva-action" href="#" onclick="alert('History feature coming soon!'); return false;" data-action="history" title="View history">
+        <span class="minerva-action-icon"></span>
+        <span>History</span>
+       </a>
+      </div>
+      <div class="page-actions-menu__list-item">
+       <a class="minerva-action" href="#" onclick="window.scrollTo(0,0); return false;" data-action="top" title="Back to top">
+        <span class="minerva-action-icon"></span>
+        <span>Top</span>
+       </a>
+      </div>
+     </div>
     </div>
     <div class="mw-footer-container">
      <footer class="mw-footer" id="footer">

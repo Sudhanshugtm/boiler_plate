@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" class="client-nojs">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Albert Einstein - Wikipedia - Article Journey</title>
+	<link href="../assets/css/wikipedia-modules.css" rel="stylesheet"/>
+	<link href="../assets/css/wikipedia-site.css" rel="stylesheet"/>
+	<link href="../assets/css/minerva-mobile.css" rel="stylesheet"/>
+	<style>
+		/* Trust Signal Styles */
+		.trust-signal {
+			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Lato, sans-serif;
+		}
+		.article-journey {
+			background: linear-gradient(135deg, #f8f9fa 0%, #eaf3ff 100%);
+			border-left: 4px solid #14866d;
+			padding: 16px;
+			margin: 0 16px 16px 16px;
+			border-radius: 8px;
+		}
+		.journey-header {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			margin-bottom: 16px;
+		}
+		.journey-title {
+			font-weight: 600;
+			font-size: 14px;
+			color: #202122;
+		}
+		.journey-subtitle {
+			font-size: 12px;
+			color: #54595d;
+			margin-top: 4px;
+		}
+		.journey-timeline {
+			position: relative;
+			padding-left: 24px;
+		}
+		.journey-timeline::before {
+			content: '';
+			position: absolute;
+			left: 6px;
+			top: 8px;
+			bottom: 8px;
+			width: 2px;
+			background: #eaecf0;
+		}
+		.journey-event {
+			position: relative;
+			margin-bottom: 16px;
+		}
+		.journey-event::before {
+			content: '';
+			position: absolute;
+			left: -24px;
+			top: 4px;
+			width: 12px;
+			height: 12px;
+			border-radius: 50%;
+			background: #3366cc;
+			border: 2px solid white;
+			box-shadow: 0 0 0 2px #eaecf0;
+		}
+		.journey-event.resolved::before {
+			background: #14866d;
+		}
+		.journey-event.debating::before {
+			background: #edab00;
+			animation: blink 1.5s infinite;
+		}
+		@keyframes blink {
+			0%, 100% { opacity: 1; }
+			50% { opacity: 0.5; }
+		}
+		.event-month {
+			font-size: 11px;
+			font-weight: 600;
+			color: #54595d;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+			margin-bottom: 4px;
+		}
+		.event-title {
+			font-weight: 600;
+			font-size: 14px;
+			color: #202122;
+			margin-bottom: 4px;
+		}
+		.event-description {
+			font-size: 13px;
+			color: #54595d;
+			line-height: 1.4;
+			margin-bottom: 6px;
+		}
+		.event-meta {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			font-size: 12px;
+		}
+		.event-status {
+			display: inline-flex;
+			align-items: center;
+			gap: 4px;
+			padding: 2px 8px;
+			border-radius: 12px;
+			font-weight: 600;
+		}
+		.status-resolved {
+			background: #d5fdf4;
+			color: #14866d;
+		}
+		.status-debating {
+			background: #fef3c7;
+			color: #945600;
+		}
+		.status-compromise {
+			background: #edeaff;
+			color: #5c39cc;
+		}
+		.editor-count {
+			display: flex;
+			align-items: center;
+			gap: 4px;
+			color: #54595d;
+		}
+		.view-discussion {
+			color: #3366cc;
+			text-decoration: none;
+			font-size: 12px;
+			font-weight: 500;
+		}
+		.collaboration-badge {
+			display: inline-flex;
+			align-items: center;
+			gap: 4px;
+			background: #eaecf0;
+			color: #54595d;
+			font-size: 11px;
+			font-weight: 600;
+			padding: 3px 8px;
+			border-radius: 12px;
+			margin-top: 8px;
+		}
+	</style>
+</head>
+<body class="skin-minerva action-view">
+	<!-- Mobile Header -->
+	<header class="vector-header-container" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: white; border-bottom: 1px solid #eaecf0; height: 54px; display: flex; align-items: center; padding: 0 16px;">
+		<div style="display: flex; align-items: center; gap: 8px; flex: 1;">
+			<div style="width: 32px; height: 32px; background: url('data:image/svg+xml;utf8,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"%3E%3Cpath fill=\"%23202122\" d=\"M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z\"/%3E%3C/svg%3E') no-repeat center; background-size: 20px; cursor: pointer;"></div>
+			<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Wikipedia_svg_logo.svg/40px-Wikipedia_svg_logo.svg.png" alt="Wikipedia" style="height: 20px;"/>
+		</div>
+		<div style="width: 32px; height: 32px; background: url('data:image/svg+xml;utf8,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"%3E%3Cpath fill=\"%23202122\" d=\"M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z\"/%3E%3C/svg%3E') no-repeat center; background-size: 20px; cursor: pointer;"></div>
+	</header>
+
+	<!-- Main Content -->
+	<main style="padding-top: 54px;">
+		<!-- Last Modified Bar -->
+		<div style="border-bottom: 1px solid #eaecf0; background: #f8f9fa; padding: 8px 16px; font-size: 13px; color: #54595d;">
+			Last edited on <a href="#" style="color: #3366cc;">October 7, 2025</a> • <a href="#" style="color: #3366cc;">View history</a>
+		</div>
+
+		<!-- Page Title -->
+		<h1 id="firstHeading" style="font-size: 24px; font-weight: 700; color: #202122; padding: 8px 16px 0 16px; margin: 0;">Albert Einstein</h1>
+
+		<!-- Trust Signal: Article Journey -->
+		<div class="trust-signal">
+			<div class="article-journey">
+				<div class="journey-header">
+					<span style="font-size: 20px;">📜</span>
+					<div>
+						<div class="journey-title">How this article was built</div>
+						<div class="journey-subtitle">18 years of human collaboration</div>
+					</div>
+				</div>
+
+				<div class="journey-timeline">
+					<div class="journey-event resolved">
+						<div class="event-month">December 2024</div>
+						<div class="event-title">Reorganized "Early life" section</div>
+						<div class="event-description">
+							"Restructured to follow chronological flow while preserving important context about his family background."
+						</div>
+						<div class="event-meta">
+							<span class="event-status status-resolved">✓ RESOLVED</span>
+							<span class="editor-count">👥 15 editors</span>
+							<span class="editor-count">⏱️ 3 day discussion</span>
+						</div>
+					</div>
+
+					<div class="journey-event resolved">
+						<div class="event-month">November 2024</div>
+						<div class="event-title">Debated: Controversy section</div>
+						<div class="event-description">
+							"After extensive discussion about recent allegations, agreed to present multiple sourced viewpoints without taking sides."
+						</div>
+						<div class="event-meta">
+							<span class="event-status status-compromise">⚖️ COMPROMISE</span>
+							<span class="editor-count">👥 34 editors</span>
+							<span class="editor-count">⏱️ week-long debate</span>
+							<a href="#" class="view-discussion">Read discussion →</a>
+						</div>
+					</div>
+
+					<div class="journey-event resolved">
+						<div class="event-month">October 2024</div>
+						<div class="event-title">Fact-check: Birth date verification</div>
+						<div class="event-description">
+							"Verified against multiple German municipal records. Confirmed 14 March 1879 as correct date."
+						</div>
+						<div class="event-meta">
+							<span class="event-status status-resolved">✓ SOURCES VERIFIED</span>
+							<span class="editor-count">👥 8 editors</span>
+							<span class="editor-count">📚 4 primary sources</span>
+						</div>
+					</div>
+
+					<div class="journey-event resolved">
+						<div class="event-month">September 2024</div>
+						<div class="event-title">Nobel Prize citations updated</div>
+						<div class="event-description">
+							"Added recent 2024 citation recognizing Einstein's foundational work on quantum entanglement."
+						</div>
+						<div class="event-meta">
+							<span class="event-status status-resolved">✓ CONSENSUS REACHED</span>
+							<span class="editor-count">👥 22 editors</span>
+							<a href="#" class="view-discussion">See the discussion →</a>
+						</div>
+					</div>
+
+					<div class="journey-event debating">
+						<div class="event-month">January 2025 • ACTIVE</div>
+						<div class="event-title">Adding political views section</div>
+						<div class="event-description">
+							"Debating whether to expand beyond his well-documented pacifism and Zionism..."
+						</div>
+						<div class="event-meta">
+							<span class="event-status status-debating">💬 DEBATING</span>
+							<span class="editor-count">👥 41 editors participating</span>
+							<span class="editor-count">💬 67 replies so far</span>
+							<a href="#" class="view-discussion">Join discussion →</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="collaboration-badge">
+					🌍 12,458 editors have contributed to this article over 18 years
+				</div>
+			</div>
+		</div>
+
+		<!-- Sample Content Preview -->
+		<div style="padding: 0 16px 16px 16px;">
+			<h2 style="font-size: 18px; font-weight: 600; margin: 24px 0 12px 0; padding-bottom: 4px; border-bottom: 1px solid #eaecf0;">Early life and education</h2>
+			<p style="font-size: 16px; line-height: 1.7; color: #202122; margin: 0 0 16px 0;">
+				<b>Albert Einstein</b> was born in <a href="#" style="color: #3366cc;">Ulm</a>, in the Kingdom of Württemberg in the German Empire on 14 March 1879...
+			</p>
+			<p style="font-size: 16px; line-height: 1.7; color: #202122; margin: 0 0 16px 0;">
+				His father was <a href="#" style="color: #3366cc;">Hermann Einstein</a>, a salesman and engineer. His mother was <a href="#" style="color: #3366cc;">Pauline Koch</a>. In 1880, the family moved to Munich...
+			</p>
+		</div>
+
+		<!-- Variant Navigation -->
+		<div style="background: #f8f9fa; border-top: 1px solid #eaecf0; padding: 16px; margin-top: 24px;">
+			<div style="font-size: 13px; font-weight: 600; color: #54595d; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Trust Signal Variants</div>
+			<div style="display: flex; flex-direction: column; gap: 8px;">
+				<a href="discussion-pulse.html" style="color: #3366cc; text-decoration: none; padding: 8px; background: white; border-radius: 4px; font-size: 14px;">🔴 Discussion Pulse</a>
+				<a href="article-journey.html" style="color: #3366cc; text-decoration: none; padding: 8px; background: white; border-radius: 4px; font-size: 14px;">📜 Article Journey (current)</a>
+				<a href="neutrality-indicator.html" style="color: #3366cc; text-decoration: none; padding: 8px; background: white; border-radius: 4px; font-size: 14px;">⚖️ Neutrality Indicator</a>
+				<a href="talk-highlights.html" style="color: #3366cc; text-decoration: none; padding: 8px; background: white; border-radius: 4px; font-size: 14px;">💬 Talk Highlights</a>
+			</div>
+		</div>
+	</main>
+
+	<!-- Bottom Action Bar -->
+	<div style="position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #eaecf0; height: 48px; display: flex; z-index: 1000;">
+		<div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 11px; color: #54595d;">
+			<span style="font-size: 24px;">✏️</span>
+			<span>Edit</span>
+		</div>
+		<div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 11px; color: #54595d;">
+			<span style="font-size: 24px;">💬</span>
+			<span>Talk</span>
+		</div>
+		<div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 11px; color: #54595d;">
+			<span style="font-size: 24px;">🕐</span>
+			<span>History</span>
+		</div>
+		<div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 11px; color: #54595d;">
+			<span style="font-size: 24px;">⬆️</span>
+			<span>Top</span>
+		</div>
+	</div>
+</body>
+</html>

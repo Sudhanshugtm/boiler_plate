@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" class="client-nojs">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Albert Einstein - Wikipedia - Discussion Pulse</title>
+	<link href="../assets/css/wikipedia-modules.css" rel="stylesheet"/>
+	<link href="../assets/css/wikipedia-site.css" rel="stylesheet"/>
+	<link href="../assets/css/minerva-mobile.css" rel="stylesheet"/>
+	<style>
+		/* Trust Signal Styles */
+		.trust-signal {
+			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Lato, sans-serif;
+		}
+		.discussion-pulse {
+			background: linear-gradient(135deg, #f8f9fa 0%, #eaf3ff 100%);
+			border-left: 4px solid #3366cc;
+			padding: 16px;
+			margin: 0 16px 16px 16px;
+			border-radius: 8px;
+		}
+		.discussion-pulse-header {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			margin-bottom: 12px;
+		}
+		.pulse-icon {
+			width: 20px;
+			height: 20px;
+			animation: pulse 2s infinite;
+		}
+		@keyframes pulse {
+			0%, 100% { opacity: 1; }
+			50% { opacity: 0.5; }
+		}
+		.pulse-badge {
+			background: #d33;
+			color: white;
+			font-size: 11px;
+			font-weight: 600;
+			padding: 2px 8px;
+			border-radius: 12px;
+			margin-left: auto;
+		}
+		.active-discussion {
+			background: white;
+			border: 1px solid #eaecf0;
+			border-radius: 8px;
+			padding: 12px;
+			margin-bottom: 8px;
+		}
+		.active-discussion:last-child {
+			margin-bottom: 0;
+		}
+		.discussion-topic {
+			font-weight: 600;
+			font-size: 14px;
+			color: #202122;
+			margin-bottom: 4px;
+		}
+		.discussion-preview {
+			font-size: 13px;
+			color: #54595d;
+			line-height: 1.4;
+			margin-bottom: 8px;
+		}
+		.discussion-meta {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			font-size: 12px;
+			color: #54595d;
+		}
+		.discussion-stat {
+			display: flex;
+			align-items: center;
+			gap: 4px;
+		}
+		.view-talk-btn {
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+			background: #3366cc;
+			color: white;
+			text-decoration: none;
+			padding: 8px 16px;
+			border-radius: 20px;
+			font-size: 13px;
+			font-weight: 500;
+			margin-top: 8px;
+		}
+		.editor-avatar {
+			width: 24px;
+			height: 24px;
+			border-radius: 50%;
+			background: #eaecf0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 11px;
+			font-weight: 600;
+			color: #54595d;
+		}
+		.editor-avatars {
+			display: flex;
+			margin-left: -8px;
+		}
+		.editor-avatars .editor-avatar {
+			border: 2px solid white;
+		}
+		.human-badge {
+			display: inline-flex;
+			align-items: center;
+			gap: 4px;
+			background: #14866d;
+			color: white;
+			font-size: 11px;
+			font-weight: 600;
+			padding: 3px 8px;
+			border-radius: 12px;
+		}
+	</style>
+</head>
+<body class="skin-minerva action-view">
+	<!-- Mobile Header -->
+	<header class="vector-header-container" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: white; border-bottom: 1px solid #eaecf0; height: 54px; display: flex; align-items: center; padding: 0 16px;">
+		<div style="display: flex; align-items: center; gap: 8px; flex: 1;">
+			<div style="width: 32px; height: 32px; background: url('data:image/svg+xml;utf8,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"%3E%3Cpath fill=\"%23202122\" d=\"M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z\"/%3E%3C/svg%3E') no-repeat center; background-size: 20px; cursor: pointer;"></div>
+			<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Wikipedia_svg_logo.svg/40px-Wikipedia_svg_logo.svg.png" alt="Wikipedia" style="height: 20px;"/>
+		</div>
+		<div style="width: 32px; height: 32px; background: url('data:image/svg+xml;utf8,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"%3E%3Cpath fill=\"%23202122\" d=\"M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z\"/%3E%3C/svg%3E') no-repeat center; background-size: 20px; cursor: pointer;"></div>
+	</header>
+
+	<!-- Main Content -->
+	<main style="padding-top: 54px;">
+		<!-- Last Modified Bar -->
+		<div style="border-bottom: 1px solid #eaecf0; background: #f8f9fa; padding: 8px 16px; font-size: 13px; color: #54595d;">
+			Last edited on <a href="#" style="color: #3366cc;">October 7, 2025</a> • <a href="#" style="color: #3366cc;">View history</a>
+		</div>
+
+		<!-- Page Title -->
+		<h1 id="firstHeading" style="font-size: 24px; font-weight: 700; color: #202122; padding: 8px 16px 0 16px; margin: 0;">Albert Einstein</h1>
+
+		<!-- Trust Signal: Discussion Pulse -->
+		<div class="trust-signal">
+			<div class="discussion-pulse">
+				<div class="discussion-pulse-header">
+					<span class="pulse-icon">🔴</span>
+					<span style="font-weight: 600; font-size: 14px; color: #202122;">Live discussions happening now</span>
+					<span class="pulse-badge">3 active</span>
+				</div>
+
+				<div class="active-discussion">
+					<div class="discussion-topic">"Should this be called a 'theory' or 'framework'?"</div>
+					<div class="discussion-preview">
+						<span style="color: #3366cc;">Physicist42:</span> "In academic contexts, this is formally referred to as a framework..."<br/>
+						<span style="color: #795cb2;">WikiEditor_NY:</span> "But general readers understand 'theory' better..."
+					</div>
+					<div class="discussion-meta">
+						<div class="editor-avatars">
+							<div class="editor-avatar">P</div>
+							<div class="editor-avatar">W</div>
+							<div class="editor-avatar">E</div>
+						</div>
+						<span class="discussion-stat">💬 23 replies</span>
+						<span class="discussion-stat">⏱️ 5 min ago</span>
+						<span class="human-badge">👥 HUMAN</span>
+					</div>
+				</div>
+
+				<div class="active-discussion">
+					<div class="discussion-topic">"Adding 2025 Nobel citation - appropriate?"</div>
+					<div class="discussion-preview">
+						<span style="color: #3366cc;">ScienceWriter:</span> "The citation directly relates to his work on quantum entanglement..."<br/>
+						<span style="color: #795cb2;">NPOVPolice:</span> "We need secondary sources, not just the announcement..."
+					</div>
+					<div class="discussion-meta">
+						<div class="editor-avatars">
+							<div class="editor-avatar">S</div>
+							<div class="editor-avatar">N</div>
+						</div>
+						<span class="discussion-stat">💬 8 replies</span>
+						<span class="discussion-stat">⏱️ 12 min ago</span>
+						<span class="human-badge">👥 HUMAN</span>
+					</div>
+				</div>
+
+				<div class="active-discussion">
+					<div class="discussion-topic">"Biography section - chronological or thematic?"</div>
+					<div class="discussion-preview">
+						<span style="color: #3366cc;">HistoryBuff:</span> "Thematic makes more sense for his scientific contributions..."<br/>
+						<span style="color: #795cb2;">TimelineExpert:</span> "Readers expect chronological for biographies..."
+					</div>
+					<div class="discussion-meta">
+						<div class="editor-avatars">
+							<div class="editor-avatar">H</div>
+							<div class="editor-avatar">T</div>
+							<div class="editor-avatar">B</div>
+							<div class="editor-avatar">+5</div>
+						</div>
+						<span class="discussion-stat">💬 47 replies</span>
+						<span class="discussion-stat">⏱️ 1 hour ago</span>
+						<span class="discussion-stat">📊 3 editors reached consensus</span>
+						<span class="human-badge">👥 HUMAN</span>
+					</div>
+				</div>
+
+				<a href="#" class="view-talk-btn">
+					<span>💬</span>
+					Join 47 editors discussing now
+				</a>
+			</div>
+		</div>
+
+		<!-- Sample Content Preview -->
+		<div style="padding: 0 16px 16px 16px;">
+			<h2 style="font-size: 18px; font-weight: 600; margin: 24px 0 12px 0; padding-bottom: 4px; border-bottom: 1px solid #eaecf0;">Early life and education</h2>
+			<p style="font-size: 16px; line-height: 1.7; color: #202122; margin: 0 0 16px 0;">
+				<b>Albert Einstein</b> was born in <a href="#" style="color: #3366cc;">Ulm</a>, in the Kingdom of Württemberg in the German Empire on 14 March 1879...
+			</p>
+			<p style="font-size: 16px; line-height: 1.7; color: #202122; margin: 0 0 16px 0;">
+				His father was <a href="#" style="color: #3366cc;">Hermann Einstein</a>, a salesman and engineer. His mother was <a href="#" style="color: #3366cc;">Pauline Koch</a>. In 1880, the family moved to Munich...
+			</p>
+		</div>
+
+		<!-- Variant Navigation -->
+		<div style="background: #f8f9fa; border-top: 1px solid #eaecf0; padding: 16px; margin-top: 24px;">
+			<div style="font-size: 13px; font-weight: 600; color: #54595d; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Trust Signal Variants</div>
+			<div style="display: flex; flex-direction: column; gap: 8px;">
+				<a href="discussion-pulse.html" style="color: #3366cc; text-decoration: none; padding: 8px; background: white; border-radius: 4px; font-size: 14px;">🔴 Discussion Pulse (current)</a>
+				<a href="article-journey.html" style="color: #3366cc; text-decoration: none; padding: 8px; background: white; border-radius: 4px; font-size: 14px;">📜 Article Journey</a>
+				<a href="neutrality-indicator.html" style="color: #3366cc; text-decoration: none; padding: 8px; background: white; border-radius: 4px; font-size: 14px;">⚖️ Neutrality Indicator</a>
+				<a href="talk-highlights.html" style="color: #3366cc; text-decoration: none; padding: 8px; background: white; border-radius: 4px; font-size: 14px;">💬 Talk Highlights</a>
+			</div>
+		</div>
+	</main>
+
+	<!-- Bottom Action Bar -->
+	<div style="position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #eaecf0; height: 48px; display: flex; z-index: 1000;">
+		<div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 11px; color: #54595d;">
+			<span style="font-size: 24px;">✏️</span>
+			<span>Edit</span>
+		</div>
+		<div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 11px; color: #54595d;">
+			<span style="font-size: 24px;">💬</span>
+			<span>Talk</span>
+		</div>
+		<div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 11px; color: #54595d;">
+			<span style="font-size: 24px;">🕐</span>
+			<span>History</span>
+		</div>
+		<div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 11px; color: #54595d;">
+			<span style="font-size: 24px;">⬆️</span>
+			<span>Top</span>
+		</div>
+	</div>
+</body>
+</html>
